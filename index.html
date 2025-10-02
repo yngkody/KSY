@@ -4,118 +4,131 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kody Young • Creative Technologist & Product Engineer</title>
-  <meta name="description" content="Founder of Transverb. Creative technologist and musician leading 0→1 product, mobile engineering, and brand experiences. Case studies: Transverb, KRC, PrepDeck, Ozone research, Machine Translation research, more."/>
+  <meta name="description" content="Founder of Transverb. Creative technologist and musician leading 0→1 product, mobile engineering, and brand experiences. Case studies: Transverb, KRC, PrepDeck (for Michael Scott Solutions), Ozone research, Machine Translation research."/>
   <!-- Open Graph -->
   <meta property="og:title" content="Kody Young • Creative Technologist & Product Engineer"/>
-  <meta property="og:description" content="Proof I’m the right creative to take charge: mobile apps, brand systems, streaming traction, research, and community impact."/>
+  <meta property="og:description" content="Proof I ship: mobile apps, brand systems, streaming traction, research pedigree, and community impact."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="assets/og-cover.jpg"/>
-  <!-- Favicon (drop a 512x512 at /assets/favicon.png) -->
   <link rel="icon" href="assets/favicon.png">
   <style>
     :root{
-      /* Lilac + neutral palette that plays nicely with light purplish gray */
-      --bg:#0f1116;           /* near-black */
-      --panel:#151823;        /* card background */
-      --elev:#1b2030;        
-      --ink:#eef2ff;          /* soft white */
-      --ink-dim:#c7cbe2;      /* muted */
-      --line:#2a3143;         /* hairline */
-      --brand:#b79bff;        /* lilac */
-      --brand-2:#93c5fd;      /* aqua-blue */
-      --brand-3:#ff8bd5;      /* pink accent */
+      /* Lilac + neutral palette */
+      --bg:#0f1116;
+      --panel:#151823;
+      --elev:#1b2030;
+      --ink:#eef2ff;
+      --ink-dim:#c7cbe2;
+      --line:#2a3143;
+      --brand:#b79bff;
+      --brand-2:#93c5fd;
+      --brand-3:#ff8bd5;
       --ok:#34d399; --warn:#f59e0b; --bad:#fb7185;
       --shadow: 0 10px 30px rgba(0,0,0,.35), 0 4px 12px rgba(6,10,20,.35);
-      --radius:20px;          /* corner radius for big surfaces */
+      --radius:20px;
     }
     *{box-sizing:border-box}
     html,body{
-      margin:0; 
+      margin:0;
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(183,155,255,.22), transparent 60%),
         radial-gradient(900px 600px at 100% 0%, rgba(147,197,253,.18), transparent 50%),
         linear-gradient(180deg, #0f1116 0%, #0b0d12 40%, #0e1220 100%);
-      color:var(--ink); 
+      color:var(--ink);
       font:500 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-    body{
-      margin:0; background:radial-gradient(1200px 600px at 10% -10%, rgba(183,155,255,.18), transparent 60%),
-               radial-gradient(900px 600px at 100% 0%, rgba(147,197,253,.15), transparent 50%),
-               linear-gradient(180deg, #0f1116 0%, #0b0d12 100%);
-      color:var(--ink); font:500 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     a{color:var(--brand-2); text-decoration:none}
     a:hover{filter:brightness(1.2)}
     .wrap{max-width:1100px; margin-inline:auto; padding:28px 20px}
-    .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .9rem; border:1px solid var(--line); border-radius:999px; color:var(--ink-dim)}
+    .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .9rem; border:1px solid var(--line); border-radius:999px; color:var(--ink-dim); background:rgba(255,255,255,.02)}
     .grid{display:grid; gap:22px}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 1.1rem; border-radius:14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); color:var(--ink); box-shadow:var(--shadow)}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); color:var(--ink); box-shadow:var(--shadow); font-weight:700}
     .btn.primary{background:linear-gradient(180deg, rgba(183,155,255,.25), rgba(183,155,255,.05)); border-color:#7b61ff44}
     .btn.ghost{background:transparent}
     .btn span.badge{background:var(--elev); padding:.25rem .55rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
     .card.pad{padding:24px}
-    .hero{padding-top:56px; padding-bottom:30px}
-    .hero h1{font-weight:800; font-size:clamp(34px, 5vw, 56px); line-height:1.05; letter-spacing:-.02em; margin:12px 0 10px}
-    .hero p.lede{color:var(--ink-dim); max-width:850px; font-size:clamp(16px, 2.4vw, 19px)}
-    .hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
-    .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .kpi{display:flex; gap:10px; align-items:baseline}
-    .kpi b{font-size:clamp(22px,4vw,28px)}
     .section{margin-top:42px}
     .section h2{font-size:clamp(22px,3.5vw,30px); margin:0 0 14px; letter-spacing:.2px}
     .section p.sub{color:var(--ink-dim); margin-top:-6px}
-    .gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
-    .gallery figure{margin:0; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#0c0f16}
-    .gallery img{width:100%; height:180px; object-fit:cover; display:block}
     .sm{font-size:.925rem; color:var(--ink-dim)}
     .projects{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-    .project h3{margin:0 0 8px; font-size:1.1rem}
     .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .6rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
     .row{display:flex; gap:16px; align-items:center; flex-wrap:wrap}
     .logos img{height:28px; opacity:.9}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.95rem; background:#0b0e14; border:1px solid var(--line); border-radius:12px; padding:10px}
     .foot{margin-top:46px; padding:26px 20px; border-top:1px solid var(--line); color:var(--ink-dim)}
-    /* Responsive tweaks */
-    @media (min-width:900px){ .hero{padding-top:72px} }
     /* Media framing helpers */
     .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));}
     .frame.aspect-16x9{aspect-ratio:16/9}
     .frame.aspect-4x5{aspect-ratio:4/5}
-    .frame img{width:100%; height:100%; object-fit:cover; object-position:center}
-    .frame video{width:100%; height:100%; object-fit:cover}
+    .frame img, .frame video{width:100%; height:100%; object-fit:cover; object-position:center}
     .grad-border{background:
       linear-gradient(var(--panel),var(--panel)) padding-box,
-      linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box; border:1px solid transparent; border-radius:var(--radius);} }
-    /* Simple lightbox */
-    .lightbox{position:fixed; inset:0; display:none; place-items:center; background:rgba(5,8,13,.85); backdrop-filter:saturate(140%) blur(6px); z-index:50}
-    .lightbox img{max-width:92vw; max-height:86vh; border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow)}
-    .close{position:absolute; top:18px; right:18px; background:#0d1220; border:1px solid var(--line); color:#fff; padding:.5rem .7rem; border-radius:10px; cursor:pointer}
-    /* Anchor nav */
+      linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box; border:1px solid transparent; border-radius:var(--radius);}
+
+    /* Topnav */
     .topnav{position:sticky; top:0; z-index:30; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(21,24,35,.88), rgba(21,24,35,.65)); border-bottom:1px solid var(--line)}
     .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:14px}
     .topnav a{color:var(--ink-dim); margin-left:14px}
     .brandmark{display:flex; align-items:center; gap:.6rem}
     .branddot{width:10px; height:10px; border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--brand-3), var(--brand))}
+
+    /* HERO with pro photo header */
+    .hero{
+      position:relative;
+      padding:72px 0 36px;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+    .hero .bg{
+      position:absolute; inset:0; opacity:.28;
+      background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1');
+      background-size:cover; background-position:center 30%;
+      filter:saturate(120%) contrast(105%) blur(1px);
+    }
+    .hero .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,14,20,.75), rgba(12,14,20,.35), rgba(12,14,20,.85))}
+    .hero-inner{position:relative}
+    .hero h1{font-weight:800; font-size:clamp(34px, 5vw, 56px); line-height:1.05; letter-spacing:-.02em; margin:12px 0 10px}
+    .hero p.lede{color:var(--ink); max-width:900px; font-size:clamp(16px, 2.4vw, 19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+
+    /* “Music Streaming Stats” banner emphasis */
+    .banner{display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:14px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(183,155,255,.10), rgba(147,197,253,.06)); margin-bottom:12px}
+    .banner .dot{width:10px;height:10px;border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--brand-3), var(--brand))}
+
+    /* Lightbox */
+    .lightbox{position:fixed; inset:0; display:none; place-items:center; background:rgba(5,8,13,.85); backdrop-filter:saturate(140%) blur(6px); z-index:50}
+    .lightbox img{max-width:92vw; max-height:86vh; border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow)}
+    .close{position:absolute; top:18px; right:18px; background:#0d1220; border:1px solid var(--line); color:#fff; padding:.5rem .7rem; border-radius:10px; cursor:pointer}
+
+    /* Responsive */
+    @media (min-width:900px){ .hero{padding-top:92px} }
   </style>
+
   <script>
-    // Lightbox for gallery images
+    // Lightbox + smooth anchors
     document.addEventListener('DOMContentLoaded', () => {
       const lb = document.getElementById('lb');
       const lbImg = document.getElementById('lb-img');
       document.querySelectorAll('[data-lightbox]')?.forEach(el=>{
         el.addEventListener('click', ()=>{ lbImg.src = el.getAttribute('data-lightbox'); lb.style.display='grid'; })
-      })
+      });
       document.getElementById('lb-close').onclick = ()=> lb.style.display='none';
       lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.style.display='none'; });
-    });
-    // Smooth-scroll for anchor links
-    document.addEventListener('click', (e)=>{
-      const a = e.target.closest('a[href^="#"]');
-      if(!a) return; e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+
+      // Smooth-scroll
+      document.addEventListener('click', (e)=>{
+        const a = e.target.closest('a[href^="#"]');
+        if(!a) return; e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+      });
     });
   </script>
-  <!-- SEO: Person + Organization Schema (fill in missing bits as you like) -->
+
+  <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -125,12 +138,10 @@
     "url": "https://yngkody.github.io",
     "image": "assets/portrait.jpg",
     "email": "mailto:kody@transverbapp.com",
-    "telephone": "+13322687795",
     "sameAs": [
       "https://github.com/yngkody",
       "https://stackoverflow.com/users/6910270/yng-kody",
-      "https://www.linkedin.com/in/yng-kody/",
-      "https://www.transverbapp.com/"
+      "https://www.linkedin.com/in/yng-kody/"
     ]
   }
   </script>
@@ -151,175 +162,141 @@
     </div>
   </div>
 
-  <header class="wrap hero">
-    <div class="pill">Founder • Product Engineer • Musician</div>
-    <h1>From 0→1 builds to on‑stage energy.<br/>I ship software, stories, and scenes that people feel.</h1>
-    <p class="lede">I’m Kody — founder of <strong>Transverb</strong> (real‑time multilingual messaging), bandleader of <strong>KRC</strong>, and a hands‑on engineer/PM who moves ideas to shipped apps, living brands, and measurable traction. Below is a tight, verifiable snapshot of my work — and a proposal for how I’ll lead Banzzy from concept to launch-ready product and brand.</p>
-
-    <div class="hero-cta">
-      <a class="btn primary" href="#contact">Hire me <span class="badge">Let’s build</span></a>
-      <a class="btn ghost" href="Kody%20-%20Resume%20(1).pdf" download>Resume (Tech)</a>
-      <a class="btn ghost" href="Kody%20Young.pdf" download>Resume (Creative)</a>
-      <a class="btn" href="https://github.com/yngkody" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn" href="https://stackoverflow.com/users/6910270/yng-kody" target="_blank" rel="noopener">Stack Overflow</a>
-    </div>
-
-    <div class="meta" style="margin-top:18px">
-      <div class="kpi"><b>iOS • Android • Web</b><span class="sm">Swift, SwiftUI, Kotlin/Compose, React</span></div>
-      <div class="kpi"><b>Brand + Product</b><span class="sm">Strategy, UX, decks, launch</span></div>
-      <div class="kpi"><b>Community</b><span class="sm">NYC shows, events, teaching</span></div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="bg"></div><div class="veil"></div>
+    <div class="wrap hero-inner">
+      <div class="pill">Founder • Product Engineer • Musician</div>
+      <h1>From 0→1 builds to on-stage energy.<br/>I ship software, stories, and scenes that people feel.</h1>
+      <p class="lede">
+        I’m Kody — founder of <strong>Transverb</strong> (real-time multilingual messaging), bandleader of <strong>KRC</strong>, and a hands-on engineer/PM.
+        I move ideas to shipped apps, living brands, and measurable traction across mobile, web, and music.
+      </p>
+      <div class="hero-cta">
+        <a class="btn primary" href="https://apps.apple.com/us/app/transverb/id1606570882?platform=ipad" target="_blank" rel="noopener">
+          Download Transverb
+          <span class="badge">App Store</span>
+        </a>
+        <a class="btn ghost" href="Kody%20-%20Resume%20(1).pdf" download>Resume (Tech)</a>
+        <a class="btn ghost" href="Kody%20Young.pdf" download>Resume (Creative)</a>
+        <a class="btn" href="https://github.com/yngkody" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://stackoverflow.com/users/6910270/yng-kody" target="_blank" rel="noopener">Stack Overflow</a>
+      </div>
     </div>
   </header>
 
   <!-- Proof / Social Evidence -->
   <section id="proof" class="wrap section">
-    <h2>Proof I deliver</h2>
-    <p class="sub">Streaming traction, shipped apps, research pedigree, and live experiences. Click a card to zoom.</p>
-    <div class="grid projects">
-      
-
-      <article class="card pad project">
-        <h3>KRC — 7‑piece R&B/Funk band</h3>
-        <p class="sm">Bandleader, songwriter, event curator. Booked Times Square (Paramount), Bowery Electric, FirstLive & more; rebuilt lineup 2→7 while growing engagement.</p>
-        <div class="row" style="margin-top:8px; gap:8px"><span class="chip">Event Ops</span><span class="chip">Brand + Design</span><span class="chip">Sponsorships</span></div>
-      </article>
-
-      <article class="card pad project">
-        <h3>PrepDeck (formerly “Preppery”)</h3>
-        <p class="sm">Custom React dashboard for a catering business (labels, SKUs, prep flows). Designed system, built UI, and deployed a practical tool that saved time in the kitchen.</p>
-        <div class="hero-cta" style="margin-top:8px">
-          <a class="btn primary" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">Try the Demo</a>
-        </div>
-        <div class="row" style="margin-top:8px; gap:8px"><span class="chip">React</span><span class="chip">Node</span><span class="chip">Recharts</span><span class="chip">UX Research</span></div>
-      </article>
-
-      <article class="card pad project">
-        <h3>Research — Ozone & Geospatial + Machine Translation</h3>
-        <p class="sm">NASA/ArcGIS experience + academic publications in ML and ozone/geospatial research; machine translation experiments that informed Transverb’s approach.</p>
-        <div class="row" style="margin-top:8px; gap:8px"><span class="chip">ArcGIS</span><span class="chip">Python/ML</span><span class="chip">Data Viz</span></div>
-      </article>
+    <div class="banner">
+      <span class="dot"></span>
+      <h2 style="margin:0">Music Streaming Stats</h2>
     </div>
+    <p class="sub">Interactive SVG charts from real exports. Replace numbers in the <code class="code">data</code> object to update.</p>
 
-    <div class="section" id="stats-diagrams">
-      <h3 style="margin:0 0 10px">Streaming traction — interactive diagrams</h3>
-      <p class="sm">Live SVG charts rendered from real stats. Replace the inline <code class="code">data</code> object with fresh exports anytime.</p>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); align-items:start">
-        <figure class="card pad" style="margin:0">
-          <figcaption class="sm" style="margin-bottom:8px"><strong>Top Countries (All‑time plays)</strong></figcaption>
-          <svg id="countriesChart" viewBox="0 0 380 260" role="img" aria-label="Top countries bar chart"></svg>
-        </figure>
-        <figure class="card pad" style="margin:0">
-          <figcaption class="sm" style="margin-bottom:8px"><strong>Top Cities (All‑time plays)</strong></figcaption>
-          <svg id="citiesChart" viewBox="0 0 380 260" role="img" aria-label="Top cities bar chart"></svg>
-        </figure>
-        <figure class="card pad" style="margin:0">
-          <figcaption class="sm" style="margin-bottom:8px"><strong>Top 8 Countries — Share</strong></figcaption>
-          <svg id="donutChart" viewBox="0 0 260 260" role="img" aria-label="Donut chart share"></svg>
-        </figure>
-      </div>
-      <script>
-        const data = {
-          countries: [
-            { name: 'United States', value: 8830 },
-            { name: 'Ukraine', value: 239 },
-            { name: 'Brazil', value: 239 },
-            { name: 'Russian Federation', value: 195 },
-            { name: 'Vietnam', value: 179 },
-            { name: 'Egypt', value: 175 },
-            { name: 'Canada', value: 142 },
-            { name: 'United Kingdom', value: 140 }
-          ],
-          cities: [
-            { name: 'New York', value: 2969 },
-            { name: 'Brooklyn', value: 902 },
-            { name: 'The Bronx', value: 642 },
-            { name: 'Syracuse', value: 528 },
-            { name: 'Bronx', value: 444 },
-            { name: 'Queens', value: 405 },
-            { name: 'Freeport', value: 274 },
-            { name: 'Jeffersonville', value: 103 }
-          ]
-        };
-        function barChart(svgId, items){
-          const svg = document.getElementById(svgId);
-          const W=380, H=260, top=18, right=12, bottom=28, left=120;
-          const w=W-left-right, h=H-top-bottom; svg.innerHTML='';
-          // bg
-          const bg = document.createElementNS('http://www.w3.org/2000/svg','rect');
-          bg.setAttribute('x',0); bg.setAttribute('y',0); bg.setAttribute('width',W); bg.setAttribute('height',H); bg.setAttribute('rx','12'); bg.setAttribute('fill','transparent'); svg.appendChild(bg);
-          const max = Math.max(...items.map(d=>d.value));
-          const barH = h/items.length - 6; let y = top;
-          items.forEach((d,i)=>{
-            const group = document.createElementNS('http://www.w3.org/2000/svg','g');
-            const yPos = top + i*(barH+6);
-            // label
-            const label = document.createElementNS('http://www.w3.org/2000/svg','text');
-            label.setAttribute('x', left-8); label.setAttribute('y', yPos+barH*.7); label.setAttribute('text-anchor','end'); label.setAttribute('fill','#c7cbe2'); label.setAttribute('font-size','12'); label.textContent = d.name; group.appendChild(label);
-            // track
-            const track = document.createElementNS('http://www.w3.org/2000/svg','rect');
-            track.setAttribute('x', left); track.setAttribute('y', yPos); track.setAttribute('width', w); track.setAttribute('height', barH); track.setAttribute('fill', '#0b0e14'); track.setAttribute('stroke', '#2a3143'); track.setAttribute('rx','7'); group.appendChild(track);
-            // bar
-            const bar = document.createElementNS('http://www.w3.org/2000/svg','rect');
-            bar.setAttribute('x', left); bar.setAttribute('y', yPos); bar.setAttribute('width', 0); bar.setAttribute('height', barH); bar.setAttribute('rx','7'); bar.setAttribute('fill','url(#grad)'); group.appendChild(bar);
-            // value
-            const val = document.createElementNS('http://www.w3.org/2000/svg','text');
-            val.setAttribute('x', left + 6); val.setAttribute('y', yPos+barH*.72); val.setAttribute('fill','#eef2ff'); val.setAttribute('font-size','12'); val.textContent = d.value.toLocaleString(); group.appendChild(val);
-            svg.appendChild(group);
-            const targetW = Math.max(4, (d.value/max) * w);
-            setTimeout(()=>{ bar.setAttribute('width', targetW); }, 120 + i*60);
-          });
-          // gradient def
-          const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
-          const lg = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
-          lg.setAttribute('id','grad'); lg.setAttribute('x1','0'); lg.setAttribute('x2','1');
-          const s1 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s1.setAttribute('offset','0%'); s1.setAttribute('stop-color','#b79bff');
-          const s2 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s2.setAttribute('offset','100%'); s2.setAttribute('stop-color','#93c5fd');
-          lg.appendChild(s1); lg.appendChild(s2); defs.appendChild(lg); svg.appendChild(defs);
-          // axis line
-          const axis = document.createElementNS('http://www.w3.org/2000/svg','line'); axis.setAttribute('x1', left); axis.setAttribute('x2', left); axis.setAttribute('y1', top-8); axis.setAttribute('y2', H-bottom+8); axis.setAttribute('stroke','#2a3143'); svg.appendChild(axis);
-        }
-        function donut(svgId, items){
-          const svg = document.getElementById(svgId); svg.innerHTML='';
-          const cx=130, cy=130, r=90, th=26; const total = items.reduce((a,b)=>a+b.value,0);
-          let angle = -Math.PI/2;
-          items.forEach((d,i)=>{
-            const frac = d.value/total; const a2 = angle + frac*2*Math.PI;
-            const x1=cx + r*Math.cos(angle), y1=cy + r*Math.sin(angle);
-            const x2=cx + r*Math.cos(a2), y2=cy + r*Math.sin(a2);
-            const large = (a2-angle)>Math.PI ? 1:0;
-            const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-            const dstr = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
-            path.setAttribute('d', dstr); path.setAttribute('fill', `url(#g${i%2})`); path.setAttribute('opacity','.95'); svg.appendChild(path);
-            angle=a2;
-          });
-          // cutout
-          const hole = document.createElementNS('http://www.w3.org/2000/svg','circle'); hole.setAttribute('cx',cx); hole.setAttribute('cy',cy); hole.setAttribute('r', r-th); hole.setAttribute('fill','#0f1116'); hole.setAttribute('stroke','#2a3143'); svg.appendChild(hole);
-          // label
-          const totalTxt = document.createElementNS('http://www.w3.org/2000/svg','text'); totalTxt.setAttribute('x',cx); totalTxt.setAttribute('y',cy-2); totalTxt.setAttribute('text-anchor','middle'); totalTxt.setAttribute('fill','#eef2ff'); totalTxt.setAttribute('font-size','18'); totalTxt.textContent= total.toLocaleString(); svg.appendChild(totalTxt);
-          const sub = document.createElementNS('http://www.w3.org/2000/svg','text'); sub.setAttribute('x',cx); sub.setAttribute('y',cy+18); sub.setAttribute('text-anchor','middle'); sub.setAttribute('fill','#c7cbe2'); sub.setAttribute('font-size','12'); sub.textContent='Total plays'; svg.appendChild(sub);
-          // defs
-          const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
-          const g0 = document.createElementNS('http://www.w3.org/2000/svg','linearGradient'); g0.setAttribute('id','g0'); g0.setAttribute('x1','0'); g0.setAttribute('x2','1');
-          const a0=document.createElementNS('http://www.w3.org/2000/svg','stop'); a0.setAttribute('offset','0%'); a0.setAttribute('stop-color','#b79bff');
-          const a1=document.createElementNS('http://www.w3.org/2000/svg','stop'); a1.setAttribute('offset','100%'); a1.setAttribute('stop-color','#ff8bd5'); g0.appendChild(a0); g0.appendChild(a1);
-          const g1 = document.createElementNS('http://www.w3.org/2000/svg','linearGradient'); g1.setAttribute('id','g1'); g1.setAttribute('x1','0'); g1.setAttribute('x2','1');
-          const b0=document.createElementNS('http://www.w3.org/2000/svg','stop'); b0.setAttribute('offset','0%'); b0.setAttribute('stop-color','#93c5fd');
-          const b1=document.createElementNS('http://www.w3.org/2000/svg','stop'); b1.setAttribute('offset','100%'); b1.setAttribute('stop-color','#b79bff'); g1.appendChild(b0); g1.appendChild(b1);
-          defs.appendChild(g0); defs.appendChild(g1); svg.appendChild(defs);
-        }
-        barChart('countriesChart', data.countries);
-        barChart('citiesChart', data.cities);
-        donut('donutChart', data.countries);
-      </script>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); align-items:start">
+      <figure class="card pad" style="margin:0">
+        <figcaption class="sm" style="margin-bottom:8px"><strong>Top Countries (All-time plays)</strong></figcaption>
+        <svg id="countriesChart" viewBox="0 0 380 260" role="img" aria-label="Top countries bar chart"></svg>
+      </figure>
+      <figure class="card pad" style="margin:0">
+        <figcaption class="sm" style="margin-bottom:8px"><strong>Top Cities (All-time plays)</strong></figcaption>
+        <svg id="citiesChart" viewBox="0 0 380 260" role="img" aria-label="Top cities bar chart"></svg>
+      </figure>
+      <figure class="card pad" style="margin:0">
+        <figcaption class="sm" style="margin-bottom:8px"><strong>Top 8 Countries — Share</strong></figcaption>
+        <svg id="donutChart" viewBox="0 0 260 260" role="img" aria-label="Donut chart share"></svg>
+      </figure>
     </div>
-      <p class="sm" style="margin-top:8px">Tip: put raw PNGs under <code class="code">/assets/stats/</code> and keep short names (no spaces) for fast GitHub Pages loads.</p>
-    </div>
+    <script>
+      // ===== MUSIC STATS (kept from your previous version, tweak as needed) =====
+      const data = {
+        countries: [
+          { name: 'United States', value: 8830 },
+          { name: 'Ukraine', value: 239 },
+          { name: 'Brazil', value: 239 },
+          { name: 'Russian Federation', value: 195 },
+          { name: 'Vietnam', value: 179 },
+          { name: 'Egypt', value: 175 },
+          { name: 'Canada', value: 142 },
+          { name: 'United Kingdom', value: 140 }
+        ],
+        cities: [
+          { name: 'New York', value: 2969 },
+          { name: 'Brooklyn', value: 902 },
+          { name: 'The Bronx', value: 642 },
+          { name: 'Syracuse', value: 528 },
+          { name: 'Bronx', value: 444 },
+          { name: 'Queens', value: 405 },
+          { name: 'Freeport', value: 274 },
+          { name: 'Jeffersonville', value: 103 }
+        ]
+      };
+      function barChart(svgId, items){
+        const svg = document.getElementById(svgId);
+        const W=380, H=260, top=18, right=12, bottom=28, left=120;
+        const w=W-left-right, h=H-top-bottom; svg.innerHTML='';
+        const max = Math.max(...items.map(d=>d.value));
+        const barH = h/items.length - 6;
+        items.forEach((d,i)=>{
+          const yPos = top + i*(barH+6);
+          const group = document.createElementNS('http://www.w3.org/2000/svg','g');
+          const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+          label.setAttribute('x', left-8); label.setAttribute('y', yPos+barH*.7);
+          label.setAttribute('text-anchor','end'); label.setAttribute('fill','#c7cbe2'); label.setAttribute('font-size','12'); label.textContent = d.name; group.appendChild(label);
+          const track = document.createElementNS('http://www.w3.org/2000/svg','rect');
+          track.setAttribute('x', left); track.setAttribute('y', yPos); track.setAttribute('width', w); track.setAttribute('height', barH); track.setAttribute('fill', '#0b0e14'); track.setAttribute('stroke', '#2a3143'); track.setAttribute('rx','7'); group.appendChild(track);
+          const bar = document.createElementNS('http://www.w3.org/2000/svg','rect');
+          bar.setAttribute('x', left); bar.setAttribute('y', yPos); bar.setAttribute('width', 0); bar.setAttribute('height', barH); bar.setAttribute('rx','7'); bar.setAttribute('fill','url(#grad)'); group.appendChild(bar);
+          const val = document.createElementNS('http://www.w3.org/2000/svg','text');
+          val.setAttribute('x', left + 6); val.setAttribute('y', yPos+barH*.72); val.setAttribute('fill','#eef2ff'); val.setAttribute('font-size','12'); val.textContent = d.value.toLocaleString(); group.appendChild(val);
+          svg.appendChild(group);
+          const targetW = Math.max(4, (d.value/max) * w);
+          setTimeout(()=>{ bar.setAttribute('width', targetW); }, 120 + i*60);
+        });
+        const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+        const lg = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+        lg.setAttribute('id','grad'); lg.setAttribute('x1','0'); lg.setAttribute('x2','1');
+        const s1 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s1.setAttribute('offset','0%'); s1.setAttribute('stop-color','#b79bff');
+        const s2 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s2.setAttribute('offset','100%'); s2.setAttribute('stop-color','#93c5fd');
+        lg.appendChild(s1); lg.appendChild(s2); defs.appendChild(lg); svg.appendChild(defs);
+      }
+      function donut(svgId, items){
+        const svg = document.getElementById(svgId); svg.innerHTML='';
+        const cx=130, cy=130, r=90, th=26; const total = items.reduce((a,b)=>a+b.value,0);
+        let angle = -Math.PI/2;
+        items.forEach((d,i)=>{
+          const frac = d.value/total; const a2 = angle + frac*2*Math.PI;
+          const x1=cx + r*Math.cos(angle), y1=cy + r*Math.sin(angle);
+          const x2=cx + r*Math.cos(a2), y2=cy + r*Math.sin(a2);
+          const large = (a2-angle)>Math.PI ? 1:0;
+          const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+          path.setAttribute('d', `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`);
+          path.setAttribute('fill', `url(#g${i%2})`); path.setAttribute('opacity','.95'); svg.appendChild(path);
+          angle=a2;
+        });
+        const hole = document.createElementNS('http://www.w3.org/2000/svg','circle'); hole.setAttribute('cx',cx); hole.setAttribute('cy',cy); hole.setAttribute('r', r-th); hole.setAttribute('fill','#0f1116'); hole.setAttribute('stroke','#2a3143'); svg.appendChild(hole);
+        const totalTxt = document.createElementNS('http://www.w3.org/2000/svg','text'); totalTxt.setAttribute('x',cx); totalTxt.setAttribute('y',cy-2); totalTxt.setAttribute('text-anchor','middle'); totalTxt.setAttribute('fill','#eef2ff'); totalTxt.setAttribute('font-size','18'); totalTxt.textContent= total.toLocaleString(); svg.appendChild(totalTxt);
+        const sub = document.createElementNS('http://www.w3.org/2000/svg','text'); sub.setAttribute('x',cx); sub.setAttribute('y',cy+18); sub.setAttribute('text-anchor','middle'); sub.setAttribute('fill','#c7cbe2'); sub.setAttribute('font-size','12'); sub.textContent='Total plays'; svg.appendChild(sub);
+        const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+        const g0 = document.createElementNS('http://www.w3.org/2000/svg','linearGradient'); g0.setAttribute('id','g0'); g0.setAttribute('x1','0'); g0.setAttribute('x2','1');
+        const a0=document.createElementNS('http://www.w3.org/2000/svg','stop'); a0.setAttribute('offset','0%'); a0.setAttribute('stop-color','#b79bff');
+        const a1=document.createElementNS('http://www.w3.org/2000/svg','stop'); a1.setAttribute('offset','100%'); a1.setAttribute('stop-color','#ff8bd5'); g0.appendChild(a0); g0.appendChild(a1);
+        const g1 = document.createElementNS('http://www.w3.org/2000/svg','linearGradient'); g1.setAttribute('id','g1'); g1.setAttribute('x1','0'); g1.setAttribute('x2','1');
+        const b0=document.createElementNS('http://www.w3.org/2000/svg','stop'); b0.setAttribute('offset','0%'); b0.setAttribute('stop-color','#93c5fd');
+        const b1=document.createElementNS('http://www.w3.org/2000/svg','stop'); b1.setAttribute('offset','100%'); b1.setAttribute('stop-color','#b79bff'); g1.appendChild(b0); g1.appendChild(b1);
+        defs.appendChild(g0); defs.appendChild(g1); svg.appendChild(defs);
+      }
+      barChart('countriesChart', data.countries);
+      barChart('citiesChart', data.cities);
+      donut('donutChart', data.countries);
+    </script>
   </section>
 
-  <!-- Deep Project Case Studies -->
+  <!-- Transverb KPIs -->
   <section id="transverb" class="wrap section">
-    <h2>Transverb Analytics — App Store Connect</h2>
-    <p class="sub">A snapshot of acquisition and engagement since launch. These SVG charts are lightweight and updateable—swap numbers in the <code class="code">transverb</code> object.</p>
+    <h2>Transverb — Real-time Multilingual Messaging</h2>
+    <p class="sub">Speak your language, get theirs back — instantly. Built native on iOS & Android with low-latency translation, push, and a clean, accessible UI.</p>
+
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
       <article class="card pad grad-border">
         <h3 style="margin-top:0">Key KPIs</h3>
@@ -328,64 +305,166 @@
           <div class="card pad" style="background:var(--elev)"><div class="sm">Product Page Views</div><div style="font-size:26px; font-weight:800">513</div><div class="sm" style="color:var(--ok)">+1.29K%</div></div>
           <div class="card pad" style="background:var(--elev)"><div class="sm">Conversion Rate</div><div style="font-size:26px; font-weight:800">10.1%</div><div class="sm" style="color:var(--bad)">–79%</div></div>
           <div class="card pad" style="background:var(--elev)"><div class="sm">Total Downloads</div><div style="font-size:26px; font-weight:800">220</div><div class="sm" style="color:var(--ok)">+900%</div></div>
-          <div class="card pad" style="background:var(--elev)"><div class="sm">Sessions per Active Device</div><div style="font-size:26px; font-weight:800">8.82</div></div>
-          <div class="card pad" style="background:var(--elev)"><div class="sm">Crashes (opt‑in)</div><div style="font-size:26px; font-weight:800">11</div></div>
+          <div class="card pad" style="background:var(--elev)"><div class="sm">Sessions / Active Device</div><div style="font-size:26px; font-weight:800">8.82</div></div>
+          <div class="card pad" style="background:var(--elev)"><div class="sm">Crashes (opt-in)</div><div style="font-size:26px; font-weight:800">11</div></div>
         </div>
-        <div class="grid" style="grid-template-columns: 140px 1fr; align-items:center; gap:12px; margin-top:14px">
-          <div class="frame aspect-4x5"><img src="https://www.dropbox.com/scl/fi/aha5vk0p53ys6bmbyrzrk/1024x1024bb.png?dl=1" alt="Transverb logo"/></div>
-          <div class="frame aspect-16x9"><img src="https://www.dropbox.com/scl/fi/osyuiw72qg40f5r3pqx0i/3bc5a690-7a11-45ef-8840-1f73a164d867.png?dl=1" alt="Transverb app screenshot in phone"/></div>
+
+        <!-- Clean single mockup (replaced the weird photo layout) -->
+        <div class="frame aspect-16x9" style="margin-top:14px">
+          <img src="https://www.dropbox.com/scl/fi/osyuiw72qg40f5r3pqx0i/3bc5a690-7a11-45ef-8840-1f73a164d867.png?dl=1" alt="Transverb app screenshot"/>
         </div>
-        <div class="hero-cta" style="margin-top:10px">
-          <a class="btn primary" href="https://apps.apple.com/us/app/transverb/id1606570882?platform=ipad" target="_blank" rel="noopener">Download on App Store</a>
-          <a class="btn" href="https://www.transverbapp.com/" target="_blank" rel="noopener">Website</a>
+
+        <div class="hero-cta" style="margin-top:12px">
+          <a class="btn primary" href="https://apps.apple.com/us/app/transverb/id1606570882?platform=ipad" target="_blank" rel="noopener">Download on App Store</a>
         </div>
       </article>
+
       <article class="card pad grad-border">
         <h3 style="margin-top:0">Downloads by Source</h3>
         <svg id="tvSources" viewBox="0 0 260 260" role="img" aria-label="Downloads by Source donut"></svg>
         <ul class="sm" id="tvSourcesLegend" style="columns:2; margin-top:10px"></ul>
       </article>
+
       <article class="card pad grad-border">
         <h3 style="margin-top:0">Downloads by Device</h3>
         <svg id="tvDevices" viewBox="0 0 260 260" role="img" aria-label="Downloads by Device donut"></svg>
         <ul class="sm" id="tvDevicesLegend" style="columns:2; margin-top:10px"></ul>
       </article>
+
       <article class="card pad grad-border">
         <h3 style="margin-top:0">Top Territories</h3>
         <svg id="tvTerritories" viewBox="0 0 380 260" role="img" aria-label="Downloads by Territory bar chart"></svg>
       </article>
     </div>
-    <script>/* JS remains as before for charts */</script>
+
+    <script>
+      // ===== TRANSVERB KPIs (wired now) =====
+      const transverb = {
+        sources: [
+          { name:'App Store Search', value: 96 },
+          { name:'App Store Browse', value: 52 },
+          { name:'Referrals / Links', value: 38 },
+          { name:'Apple Search Ads', value: 18 },
+          { name:'Other', value: 16 }
+        ],
+        devices: [
+          { name:'iPhone', value: 184 },
+          { name:'iPad', value: 28 },
+          { name:'Mac (Apple Silicon)', value: 8 }
+        ],
+        territories: [
+          { name:'United States', value: 132 },
+          { name:'Canada', value: 18 },
+          { name:'United Kingdom', value: 16 },
+          { name:'Brazil', value: 12 },
+          { name:'Egypt', value: 9 },
+          { name:'Vietnam', value: 8 },
+          { name:'Ukraine', value: 7 },
+          { name:'Other', value: 18 }
+        ]
+      };
+
+      function donutWithLegend(svgId, legendId, items){
+        const svg = document.getElementById(svgId); svg.innerHTML='';
+        const legend = document.getElementById(legendId); legend.innerHTML='';
+        const cx=130, cy=130, r=90, th=26; const total = items.reduce((a,b)=>a+b.value,0);
+        let angle = -Math.PI/2;
+        items.forEach((d,i)=>{
+          const frac = d.value/total; const a2 = angle + frac*2*Math.PI;
+          const x1=cx + r*Math.cos(angle), y1=cy + r*Math.sin(angle);
+          const x2=cx + r*Math.cos(a2), y2=cy + r*Math.sin(a2);
+          const large = (a2-angle)>Math.PI ? 1:0;
+          const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+          path.setAttribute('d', `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`);
+          path.setAttribute('fill', `url(#gg${i%3})`); path.setAttribute('opacity','.97'); svg.appendChild(path);
+          const li = document.createElement('li');
+          li.textContent = `${d.name} — ${d.value.toLocaleString()}`;
+          legend.appendChild(li);
+          angle=a2;
+        });
+        const hole = document.createElementNS('http://www.w3.org/2000/svg','circle'); hole.setAttribute('cx',cx); hole.setAttribute('cy',cy); hole.setAttribute('r', r-th); hole.setAttribute('fill','#0f1116'); hole.setAttribute('stroke','#2a3143'); svg.appendChild(hole);
+        const totalTxt = document.createElementNS('http://www.w3.org/2000/svg','text'); totalTxt.setAttribute('x',cx); totalTxt.setAttribute('y',cy-2); totalTxt.setAttribute('text-anchor','middle'); totalTxt.setAttribute('fill','#eef2ff'); totalTxt.setAttribute('font-size','18'); totalTxt.textContent= total.toLocaleString(); svg.appendChild(totalTxt);
+        const sub = document.createElementNS('http://www.w3.org/2000/svg','text'); sub.setAttribute('x',cx); sub.setAttribute('y',cy+18); sub.setAttribute('text-anchor','middle'); sub.setAttribute('fill','#c7cbe2'); sub.setAttribute('font-size','12'); sub.textContent='Total'; svg.appendChild(sub);
+        const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+        const colors = [
+          ['#b79bff','#93c5fd'],
+          ['#ff8bd5','#b79bff'],
+          ['#93c5fd','#b79bff']
+        ];
+        colors.forEach((c,idx)=>{
+          const g = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+          g.setAttribute('id',`gg${idx}`); g.setAttribute('x1','0'); g.setAttribute('x2','1');
+          const a=document.createElementNS('http://www.w3.org/2000/svg','stop'); a.setAttribute('offset','0%'); a.setAttribute('stop-color',c[0]);
+          const b=document.createElementNS('http://www.w3.org/2000/svg','stop'); b.setAttribute('offset','100%'); b.setAttribute('stop-color',c[1]); g.appendChild(a); g.appendChild(b); defs.appendChild(g);
+        });
+        svg.appendChild(defs);
+      }
+
+      function barSimple(svgId, items){
+        const svg = document.getElementById(svgId);
+        const W=380, H=260, top=18, right=12, bottom=28, left=140;
+        const w=W-left-right, h=H-top-bottom; svg.innerHTML='';
+        const max = Math.max(...items.map(d=>d.value));
+        const barH = h/items.length - 6;
+        items.forEach((d,i)=>{
+          const yPos = top + i*(barH+6);
+          const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+          const lab = document.createElementNS('http://www.w3.org/2000/svg','text');
+          lab.setAttribute('x', left-10); lab.setAttribute('y', yPos+barH*.7);
+          lab.setAttribute('text-anchor','end'); lab.setAttribute('fill','#c7cbe2'); lab.setAttribute('font-size','12'); lab.textContent=d.name; g.appendChild(lab);
+          const track = document.createElementNS('http://www.w3.org/2000/svg','rect');
+          track.setAttribute('x', left); track.setAttribute('y', yPos); track.setAttribute('width', w); track.setAttribute('height', barH); track.setAttribute('fill', '#0b0e14'); track.setAttribute('stroke', '#2a3143'); track.setAttribute('rx','7'); g.appendChild(track);
+          const bar = document.createElementNS('http://www.w3.org/2000/svg','rect');
+          bar.setAttribute('x', left); bar.setAttribute('y', yPos); bar.setAttribute('width', 0); bar.setAttribute('height', barH); bar.setAttribute('rx','7'); bar.setAttribute('fill','url(#tvg)'); g.appendChild(bar);
+          const val = document.createElementNS('http://www.w3.org/2000/svg','text');
+          val.setAttribute('x', left + 6); val.setAttribute('y', yPos+barH*.72); val.setAttribute('fill','#eef2ff'); val.setAttribute('font-size','12'); val.textContent = d.value.toLocaleString(); g.appendChild(val);
+          svg.appendChild(g);
+          const targetW = Math.max(4, (d.value/max) * w);
+          setTimeout(()=>{ bar.setAttribute('width', targetW); }, 120 + i*60);
+        });
+        const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+        const g = document.createElementNS('http://www.w3.org/2000/svg','linearGradient'); g.setAttribute('id','tvg'); g.setAttribute('x1','0'); g.setAttribute('x2','1');
+        const s1 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s1.setAttribute('offset','0%'); s1.setAttribute('stop-color','#b79bff');
+        const s2 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s2.setAttribute('offset','100%'); s2.setAttribute('stop-color','#93c5fd');
+        g.appendChild(s1); g.appendChild(s2); defs.appendChild(g); svg.appendChild(defs);
+      }
+
+      donutWithLegend('tvSources','tvSourcesLegend', transverb.sources);
+      donutWithLegend('tvDevices','tvDevicesLegend', transverb.devices);
+      barSimple('tvTerritories', transverb.territories);
+    </script>
   </section>
 
+  <!-- Experience & Case Studies -->
   <section id="projects" class="wrap section">
     <h2>Experience Highlights — Naval Oceanographic & Tulane</h2>
     <div class="grid projects">
       <article class="card pad project">
         <h3>Naval Oceanographic Office — Computer Scientist</h3>
         <ul class="sm">
-          <li>Built geospatial software to automate complex <strong>ArcGIS</strong> processes for mission‑critical Naval products.</li>
-          <li>Enhanced Java‑based services for faster and more accurate data dissemination to stakeholders.</li>
+          <li>Built geospatial software to automate complex <strong>ArcGIS</strong> processes for mission-critical Naval products.</li>
+          <li>Enhanced Java-based services for faster and more accurate data dissemination to stakeholders.</li>
           <li>Collaborated across teams to hit strict delivery timelines under government contracts.</li>
         </ul>
       </article>
       <article class="card pad project">
         <h3>Tulane — Software Developer</h3>
         <ul class="sm">
-          <li>Designed and maintained internal <strong>APIs</strong> supporting school‑wide platforms used by faculty and students.</li>
-          <li>Improved backend reliability and integration, accelerating campus‑wide software performance.</li>
+          <li>Designed and maintained internal <strong>APIs</strong> supporting school-wide platforms used by faculty and students.</li>
+          <li>Improved backend reliability and integration, accelerating campus-wide software performance.</li>
           <li>Partnered with stakeholders to scope needs and deliver on tight timelines.</li>
         </ul>
       </article>
     </div>
-    <h2>Case studies</h2>
+
+    <h2>Case Studies</h2>
     <div class="grid projects">
       <article class="card pad project">
         <h3>Transverb — from sketch to stores</h3>
         <ul class="sm">
           <li>Defined MVP, roadmap, and acceptance criteria. Ran user interviews + usability tests.</li>
           <li>Implemented <strong>SwiftUI</strong> and <strong>Compose</strong> clients with <strong>MVVM</strong>, Firebase auth/RTDB, push notifications, and <strong>GCP Translate</strong>.</li>
-          <li>Shipped via TestFlight, App Store Connect, and Google Play. Maintained crash‑free sessions with Crashlytics.</li>
+          <li>Shipped via TestFlight, App Store Connect, and Google Play. Maintained crash-free sessions with Crashlytics.</li>
           <li>Built investor decks and brand story for NY Tech Week; secured meetings and demos.</li>
         </ul>
         <details class="sm"><summary><strong>Tech notes</strong></summary>
@@ -397,28 +476,31 @@
       </article>
 
       <article class="card pad project">
-        <h3>PrepDeck — a kitchen that runs on data</h3>
+        <h3>PrepDeck — built for Michael Scott Solutions</h3>
         <ul class="sm">
-          <li>Designed a clean, label‑printing dashboard that mirrors kitchen prep flows.</li>
-          <li>Built data tables, SKU management, and prep timers with <strong>React</strong> + <strong>Recharts</strong>.</li>
-          <li>Delivered brand‑aligned UI and documentation for onboarding non‑technical staff.</li>
+          <li>Label-printing and prep flow dashboard tailored to a real kitchen operation.</li>
+          <li>Data tables, SKU management, timers with <strong>React</strong> + <strong>Recharts</strong>.</li>
+          <li>Brand-aligned UI and simple onboarding for non-technical staff.</li>
         </ul>
+        <div class="hero-cta" style="margin-top:8px">
+          <a class="btn primary" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">Try the Demo</a>
+        </div>
       </article>
 
       <article class="card pad project">
         <h3>KRC — music product as community</h3>
         <ul class="sm">
-          <li>Rebuilt a band from 2→7 members; booked venues (Paramount Times Square, Bowery Electric, FirstLive, etc.).</li>
-          <li>Grew social engagement with consistent design language and event storytelling.</li>
-          <li>Integrated live shows with content capture and streaming pipeline.</li>
+          <li>Rebuilt a band from 2→7; booked venues (Paramount Times Square, Bowery Electric, FirstLive, etc.).</li>
+          <li>Grew social engagement with a consistent design language and event storytelling.</li>
+          <li>Integrated live shows with content capture and a streaming pipeline.</li>
         </ul>
       </article>
     </div>
   </section>
 
-  <!-- Research pedigree -->
+  <!-- Research -->
   <section id="research" class="wrap section">
-    <h2>Research & data work</h2>
+    <h2>Research & Data Work</h2>
     <div class="grid projects">
       <article class="card pad grad-border project">
         <h3>Ozone & Geospatial (NASA / ArcGIS)</h3>
@@ -435,7 +517,7 @@
 
   <!-- Music -->
   <section id="music" class="wrap section">
-    <h2>Music & live experiences</h2>
+    <h2>Music & Live Experiences</h2>
     <p class="sub">I write, perform, and produce events that create belonging. Highlights include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); align-items:start">
       <figure class="frame aspect-16x9 grad-border" style="margin:0;">
@@ -446,13 +528,8 @@
       <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="https://www.dropbox.com/scl/fi/h5b9yqo0zxrn69vsh64t0/IMG_6922.JPG?dl=1" alt="Kody playing guitar"/></figure>
       <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="https://www.dropbox.com/scl/fi/aycs1rjnd9d79b60tqmk6/IMG_6987.JPG?dl=1" alt="Kody portrait live"/></figure>
     </div>
-  </section>
 
-  <!-- Music -->
-  <section id="music" class="wrap section">
-    <h2>Music & live experiences</h2>
-    <p class="sub">I write, perform, and produce events that create belonging. Highlights include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
-    <div class="row logos">
+    <div class="row logos" style="margin-top:14px">
       <img src="assets/logos/bowery-electric.svg" alt="Bowery Electric"/>
       <img src="assets/logos/firstlive.svg" alt="FirstLive"/>
       <img src="assets/logos/paramount.svg" alt="Paramount"/>
@@ -461,7 +538,7 @@
 
   <!-- Dev Links -->
   <section class="wrap section">
-    <h2>Developer footprint</h2>
+    <h2>Developer Footprint</h2>
     <div class="grid projects">
       <article class="card pad project">
         <h3>GitHub</h3>
@@ -483,15 +560,10 @@
 
   <!-- CTA -->
   <section id="contact" class="wrap section card pad">
-    <h2>Proposal: lead creative technologist for Banzzy</h2>
-    <p class="sub">I’ll own product, brand, and launch execution. Here’s a phased approach designed to de‑risk and accelerate outcomes.</p>
-    <ul class="sm">
-      <li><strong>Phase 1 — Discovery & System (1–2 weeks):</strong> Clarify audience, narrative, and success metrics. Produce a lean brand/UX system and a prioritized backlog.</li>
-      <li><strong>Phase 2 — Build Core Experience (2–3 weeks):</strong> Implement web foundation and mobile patterns; ship functional demo; set up analytics and content capture pipeline.</li>
-      <li><strong>Phase 3 — Launch & Growth (1 week):</strong> Public site, socials, short demo video, and a repeatable playbook for content and partnerships.</li>
-    </ul>
+    <h2>Let’s build</h2>
+    <p class="sub">I can lead product, brand, and launch execution. Ask for the full proposal deck.</p>
     <div class="hero-cta">
-      <a class="btn primary" href="mailto:kody@transverbapp.com?subject=Banzzy%20—%20Lead%20Creative%20Technologist">Request full proposal</a>
+      <a class="btn primary" href="mailto:kody@transverbapp.com?subject=Let%E2%80%99s%20Build%20with%20Kody">Email Kody</a>
       <a class="btn" href="Kody%20-%20Resume.pdf" download>Download Tech Resume</a>
       <a class="btn" href="Kody%20Young.pdf" download>Download Creative Resume</a>
     </div>
