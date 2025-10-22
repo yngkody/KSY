@@ -160,6 +160,40 @@
       .wrap{max-width:100%; padding:0}
       .section{margin-top:18px}
     }
+
+    /* --- NAV FIX: prevent overlap/stacking on small screens --- */
+.topnav .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  flex-wrap:wrap;              /* allow second row for nav */
+}
+
+.topnav .brandmark{order:1; flex:0 1 auto; min-width:0}
+.topnav nav{
+  order:2;
+  display:flex; align-items:center; gap:8px;
+  flex:1 1 100%;               /* take full width on its own row */
+  overflow-x:auto;             /* horizontal scroll if needed */
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;          /* keep links on one line */
+  padding-block:6px;
+  scrollbar-width:none;
+}
+.topnav nav::-webkit-scrollbar{display:none}
+.topnav nav a{
+  display:inline-flex; align-items:center;       /* ensure consistent height */
+  line-height:1; padding:.45rem .7rem; 
+  border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.02); color:var(--ink-dim); 
+}
+
+/* Desktop: put nav back on the same row, no scroll */
+@media (min-width:900px){
+  .topnav .wrap{flex-wrap:nowrap}
+  .topnav nav{
+    order:1; flex:0 0 auto; overflow:visible; white-space:normal; padding-block:0;
+  }
+}
+
   </style>
 
   <!-- Schema.org Person -->
