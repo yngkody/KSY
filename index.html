@@ -12,8 +12,8 @@
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="headshot.jpg"/>
   <style>
+    /* ========== TOKENS ========== */
     :root{
-      /* Lilac + neutral palette */
       --bg:#0f1116;          /* page bg */
       --panel:#151823;       /* card bg */
       --elev:#1b2030;        /* elevated bg */
@@ -28,8 +28,16 @@
       --radius:20px;
       --max:1100px;
     }
+
+    /* ========== BASE ========== */
     *{box-sizing:border-box}
-    html,body{margin:0; color:var(--ink); font:500 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial}
+    html,body{
+      margin:0;
+      color:var(--ink);
+      font:500 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
     body{
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(183,155,255,.22), transparent 60%),
@@ -37,45 +45,112 @@
         linear-gradient(180deg, #0f1116 0%, #0b0d12 40%, #0e1220 100%);
     }
     a{color:var(--brand-2); text-decoration:none}
-    a:hover{filter:brightness(1.2)}
-    .wrap{max-width:var(--max); margin-inline:auto; padding:28px 20px}
+    a:hover{filter:brightness(1.12)}
+    a:focus-visible, button:focus-visible{outline:2px solid var(--brand-2); outline-offset:2px; border-radius:10px}
+
+    .wrap{max-width:var(--max); margin-inline:auto; padding:24px clamp(14px,4vw,20px)}
     .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .8rem; border:1px solid var(--line); border-radius:999px; color:var(--ink-dim); background:rgba(255,255,255,.02)}
     .grid{display:grid; gap:22px}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 1.1rem; border-radius:14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); color:var(--ink); box-shadow:var(--shadow); font-weight:700}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:clamp(.8rem,.9rem,1rem) clamp(1rem,3.5vw,1.2rem);
+      min-height:44px;
+      border-radius:14px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      color:var(--ink); box-shadow:var(--shadow); font-weight:700; white-space:nowrap;
+    }
     .btn.primary{background:linear-gradient(180deg, rgba(183,155,255,.25), rgba(183,155,255,.05)); border-color:#7b61ff44}
     .btn.ghost{background:transparent}
     .btn .badge{background:var(--elev); padding:.25rem .55rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .card.pad{padding:24px}
-    .section{margin-top:42px}
+    .card.pad{padding:clamp(16px,3.2vw,24px)}
+    .section{margin-top:clamp(28px,6vw,42px)}
     .section h2{font-size:clamp(22px,3.5vw,30px); margin:0 0 14px; letter-spacing:.2px}
     .section p.sub{color:var(--ink-dim); margin-top:-6px}
     .sm{font-size:.94rem; color:var(--ink-dim)}
-    .projects{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .6rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
     .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.95rem; background:#0b0e14; border:1px solid var(--line); border-radius:12px; padding:10px}
-    .foot{margin-top:46px; padding:26px 20px; border-top:1px solid var(--line); color:var(--ink-dim)}
+    .foot{margin-top:46px; padding:26px clamp(14px,4vw,20px); border-top:1px solid var(--line); color:var(--ink-dim)}
 
-    /* Topnav */
-    .topnav{position:sticky; top:0; z-index:30; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(21,24,35,.88), rgba(21,24,35,.65)); border-bottom:1px solid var(--line)}
-    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:14px}
-    .topnav a{color:var(--ink-dim); margin-left:14px}
-    .brandmark{display:flex; align-items:center; gap:.6rem}
+    /* ========== TOPNAV ========== */
+    .topnav{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(180deg, rgba(21,24,35,.88), rgba(21,24,35,.65));
+      border-bottom:1px solid var(--line);
+    }
+    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .brandmark{display:flex; align-items:center; gap:.6rem; min-width:0}
     .branddot{width:10px; height:10px; border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--brand-3), var(--brand))}
+    .topnav nav{
+      display:flex; gap:8px; align-items:center;
+      overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+      padding-block:6px; mask-image:linear-gradient(90deg,transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+    }
+    .topnav nav::-webkit-scrollbar{display:none}
+    .topnav nav a{
+      color:var(--ink-dim);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:.4rem .7rem;
+      font-size:.92rem;
+      flex:0 0 auto;
+      background:rgba(255,255,255,.02);
+    }
 
-    /* Hero */
-    .hero{position:relative; padding:72px 0 22px; overflow:hidden; border-bottom:1px solid var(--line)}
-    .hero .bg{position:absolute; inset:0; opacity:.18; background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1'); background-size:cover; background-position:center 30%; filter:saturate(120%) contrast(105%) blur(1px); pointer-events:none}
+    /* ========== HERO ========== */
+    .hero{position:relative; padding:clamp(48px,10vw,72px) 0 22px; overflow:hidden; border-bottom:1px solid var(--line)}
+    .hero .bg{
+      position:absolute; inset:0; opacity:.18;
+      background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1');
+      background-size:cover; background-position:center 30%;
+      filter:saturate(115%) contrast(105%);
+      pointer-events:none;
+    }
     .hero .veil{position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(12,14,20,.55), rgba(12,14,20,.25), rgba(12,14,20,.65))}
-    .hero h1{font-weight:800; font-size:clamp(34px,5vw,54px); line-height:1.06; letter-spacing:-.02em; margin:10px 0 10px}
-    .hero p.lede{color:var(--ink); max-width:900px; font-size:clamp(16px,2.2vw,19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .hero > .wrap{position:relative; z-index:1}
+    .hero h1{font-weight:800; font-size:clamp(28px,6vw,54px); line-height:1.08; letter-spacing:-.02em; margin:10px 0 10px}
+    .hero p.lede{color:var(--ink); max-width:70ch; font-size:clamp(15px,3.8vw,19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
 
-    /* Resume layout */
-    .two-col{display:grid; grid-template-columns:1.2fr .8fr; gap:22px}
-    @media (max-width:900px){ .two-col{grid-template-columns:1fr} .hero{padding-top:92px} }
+    /* ========== LAYOUTS ========== */
+    .two-col{display:grid; grid-template-columns:1fr; gap:22px}
+    @media (min-width:900px){ .two-col{grid-template-columns:1.2fr .8fr} }
 
-    /* Print */
+    /* Media framing helpers (KRC gallery) */
+    .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00))}
+    .aspect-16x9{aspect-ratio:16/9}
+    .aspect-4x5{aspect-ratio:4/5}
+    .frame img,.frame video{width:100%; height:100%; object-fit:cover; object-position:center}
+
+    /* Subtle gradient border utility */
+    .grad-border{
+      background:linear-gradient(var(--panel),var(--panel)) padding-box,
+                 linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box;
+      border:1px solid transparent; border-radius:var(--radius)
+    }
+
+    /* ========== RESPONSIVE TWEAKS ========== */
+    /* Make button rows stack nicely on narrow screens */
+    @media (max-width:520px){
+      .row .btn{flex:1 1 calc(50% - 12px)}
+      .row .btn:nth-last-child(1):only-child{flex-basis:100%}
+    }
+    @media (max-width:380px){
+      .row .btn{flex-basis:100%}
+    }
+
+    /* So the KRC media grid doesn’t require wide columns on phones */
+    #krc .grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start}
+
+    /* Tone down heavy filters on low-power / small screens */
+    @media (max-width:480px){
+      .hero .bg{opacity:.16}
+      .topnav{backdrop-filter:saturate(140%) blur(8px)}
+    }
+
+    /* Print simplifications */
     @media print{
       body{background:#fff; color:#111}
       .topnav, .hero .bg, .hero .veil{display:none !important}
@@ -85,13 +160,6 @@
       .wrap{max-width:100%; padding:0}
       .section{margin-top:18px}
     }
-  .hero > .wrap{position:relative; z-index:1}
-      /* Media framing helpers for KRC gallery */
-    .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00))}
-    .aspect-16x9{aspect-ratio:16/9}
-    .aspect-4x5{aspect-ratio:4/5}
-    .frame img,.frame video{width:100%; height:100%; object-fit:cover; object-position:center}
-    .grad-border{background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box; border:1px solid transparent; border-radius:var(--radius)}
   </style>
 
   <!-- Schema.org Person -->
@@ -116,8 +184,8 @@
   <!-- Top Nav -->
   <div class="topnav" role="navigation" aria-label="Primary">
     <div class="wrap">
-      <div class="brandmark"><span class="branddot"></span><strong>Kody Young</strong><span class="pill">Creative Technologist</span></div>
-      <nav class="sm">
+      <div class="brandmark"><span class="branddot"></span><strong>Kody Young</strong><span class="pill" aria-hidden="true">Creative Technologist</span></div>
+      <nav class="sm" aria-label="Section links">
         <a href="#summary">Summary</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
@@ -131,7 +199,7 @@
 
   <!-- HERO -->
   <header class="hero" role="banner">
-    <div class="bg"></div><div class="veil"></div>
+    <div class="bg" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
     <div class="wrap">
       <div class="pill">Founder • Product Engineer • Musician</div>
       <h1>Product-minded engineer shipping 0→1 apps, tools, and shows people feel.</h1>
@@ -161,7 +229,6 @@
       <aside class="card pad" aria-label="Contact & Links">
         <h2 style="margin-top:0">Contact</h2>
         <p class="sm" style="margin:0 0 10px">📞 <a href="tel:+13322687795">(332) 268-7795</a><br/>✉️ <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a></p>
-        <!-- Removed duplicate project buttons per user request -->
       </aside>
     </div>
   </section>
@@ -194,8 +261,7 @@
         <ul class="sm">
           <li>React + Vite dashboard to automate catering label generation, order tracking, and reporting.</li>
           <li>Integrated Google Sheets APIs for real-time sync; Material UI components and state-driven data viz (Recharts).</li>
-          <li>Modular components and simple onboarding for non-technical staff.
-          </li>
+          <li>Modular components and simple onboarding for non-technical staff.</li>
         </ul>
       </article>
 
@@ -218,7 +284,7 @@
     </div>
   </section>
 
-  <!-- PROJECTS / LINKS (from resume "App/Website Links") -->
+  <!-- PROJECTS / LINKS -->
   <section id="projects" class="wrap section">
     <h2>Selected Projects & Links</h2>
     <div class="grid projects">
@@ -244,14 +310,14 @@
   <section id="krc" class="wrap section">
     <h2>KRC — Music & Live Experiences</h2>
     <p class="sub">I lead and play guitar for <strong>KRC</strong>, an R&B/funk band creating community through shows and storytelling. Recent stages include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); align-items:start">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start">
       <figure class="frame aspect-16x9 grad-border" style="margin:0;">
-        <video controls playsinline poster="perf.JPG">
+        <video controls playsinline preload="metadata" poster="perf.JPG" style="background:#0b0e14" width="100%">
           <source src="krc.mp4" type="video/mp4" />
         </video>
       </figure>
-      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="perf.JPG" alt="KRC live performance"/></figure>
-      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="headshot.jpg" alt="Kody on stage"/></figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="perf.JPG" alt="KRC live performance" loading="lazy" decoding="async"/></figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="headshot.jpg" alt="Kody on stage" loading="lazy" decoding="async"/></figure>
     </div>
     <div class="row" style="margin-top:14px">
       <a class="btn" href="https://www.instagram.com/thekrcband/" target="_blank" rel="noopener">Follow @thekrcband</a>
@@ -261,7 +327,7 @@
   <!-- SKILLS -->
   <section id="skills" class="wrap section">
     <h2>Skills</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
       <article class="card pad">
         <h3 style="margin-top:0">Mobile</h3>
         <p class="sm">Swift, SwiftUI, Combine, Kotlin, Jetpack Compose, Coroutines, UIKit, Core Data, MVVM, Coordinator</p>
@@ -276,7 +342,7 @@
       </article>
       <article class="card pad">
         <h3 style="margin-top:0">Tooling & Process</h3>
-        <p class="sm">Xcode, Android Studio, Git, App Store Connect, TestFlight, Agile, Product roadmapping, backlog management, user research, wireframing (Figma)</p>
+        <p class="sm">Xcode, Android Studio, Git, App Store Connect, TestFlight, Agile, Product roadmapping, user research, wireframing (Figma)</p>
       </article>
     </div>
   </section>
@@ -317,14 +383,17 @@
   </footer>
 
   <script>
-    // Smooth anchors + year
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth anchors (respects reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.addEventListener('click', (e)=>{
       const a = e.target.closest('a[href^="#"]');
-      if(!a) return; e.preventDefault();
-      document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+      if(!a) return;
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior: prefersReduced ? 'auto':'smooth'});
     });
   </script>
 </body>
 </html>
-
