@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kody Young — Creative Technologist • Product Engineer • Musician</title>
-  <meta name="description" content="Founder of Transverb. Product‑minded creative technologist shipping 0→1 mobile apps, data‑driven web tools, and brand experiences. Naval Oceanographic Office, Tulane, Transverb, PrepDeck, STA."/>
+  <meta name="description" content="Founder of Transverb. Product-minded creative technologist shipping 0→1 mobile apps, data-driven web tools, and brand experiences. Naval Oceanographic Office, Tulane, Transverb, PrepDeck, STA."/>
   <link rel="icon" href="assets/favicon.png">
   <!-- Open Graph -->
   <meta property="og:title" content="Kody Young — Creative Technologist • Product Engineer"/>
@@ -66,8 +66,8 @@
 
     /* Hero */
     .hero{position:relative; padding:72px 0 22px; overflow:hidden; border-bottom:1px solid var(--line)}
-    .hero .bg{position:absolute; inset:0; opacity:.28; background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1'); background-size:cover; background-position:center 30%; filter:saturate(120%) contrast(105%) blur(1px)}
-    .hero .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,14,20,.75), rgba(12,14,20,.35), rgba(12,14,20,.85))}
+    .hero .bg{position:absolute; inset:0; opacity:.18; background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1'); background-size:cover; background-position:center 30%; filter:saturate(120%) contrast(105%) blur(1px); pointer-events:none}
+    .hero .veil{position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(12,14,20,.55), rgba(12,14,20,.25), rgba(12,14,20,.65))}
     .hero h1{font-weight:800; font-size:clamp(34px,5vw,54px); line-height:1.06; letter-spacing:-.02em; margin:10px 0 10px}
     .hero p.lede{color:var(--ink); max-width:900px; font-size:clamp(16px,2.2vw,19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
 
@@ -85,6 +85,13 @@
       .wrap{max-width:100%; padding:0}
       .section{margin-top:18px}
     }
+  .hero > .wrap{position:relative; z-index:1}
+      /* Media framing helpers for KRC gallery */
+    .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00))}
+    .aspect-16x9{aspect-ratio:16/9}
+    .aspect-4x5{aspect-ratio:4/5}
+    .frame img,.frame video{width:100%; height:100%; object-fit:cover; object-position:center}
+    .grad-border{background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box; border:1px solid transparent; border-radius:var(--radius)}
   </style>
 
   <!-- Schema.org Person -->
@@ -114,6 +121,7 @@
         <a href="#summary">Summary</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#krc">Music</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
@@ -126,11 +134,11 @@
     <div class="bg"></div><div class="veil"></div>
     <div class="wrap">
       <div class="pill">Founder • Product Engineer • Musician</div>
-      <h1>Product‑minded engineer shipping 0→1 apps, tools, and shows people feel.</h1>
-      <p class="lede">Founder of <strong>Transverb</strong> (real‑time multilingual messaging). Hands‑on builder for <strong>PrepDeck</strong> (React/Vite dashboard for a live kitchen) and <strong>STA</strong> (custom e‑commerce skin). Prior—<strong>Naval Oceanographic Office</strong> (ArcGIS automation) & <strong>Tulane</strong> (APIs). NYC‑based.</p>
+      <h1>Product-minded engineer shipping 0→1 apps, tools, and shows people feel.</h1>
+      <p class="lede">Founder of <strong>Transverb</strong> (real-time multilingual messaging). Hands-on builder for <strong>PrepDeck</strong> (React/Vite dashboard for a live kitchen) and <strong>STA</strong> (custom e-commerce skin). Prior—<strong>Naval Oceanographic Office</strong> (ArcGIS automation) & <strong>Tulane</strong> (APIs). NYC-based.</p>
       <div class="row" style="margin-top:12px">
         <a class="btn primary" href="https://apps.apple.com/us/app/transverb/id1606570882?platform=ipad" target="_blank" rel="noopener">Transverb <span class="badge">App Store</span></a>
-        <a class="btn" href="Kody%20-%20Resume.pdf" download>Download PDF</a>
+        <a class="btn" href="kody-tech-resume" download>Download Resume</a>
         <a class="btn ghost" href="https://github.com/yngkody" target="_blank" rel="noopener">GitHub</a>
         <a class="btn ghost" href="https://stackoverflow.com/users/6910270/yng-kody" target="_blank" rel="noopener">Stack Overflow</a>
       </div>
@@ -142,7 +150,7 @@
     <div class="two-col">
       <article class="card pad" aria-labelledby="prof-head">
         <h2 id="prof-head">Personal Profile</h2>
-        <p class="sm">Founder and product‑minded creative technologist with experience leading 0→1 product development. Skilled in cross‑functional collaboration, shipping‑focused execution, and emotionally resonant UX. I solve real problems through user research, clear docs, and iterative development.</p>
+        <p class="sm">Founder and product-minded creative technologist with experience leading 0→1 product development. Skilled in cross-functional collaboration, shipping-focused execution, and emotionally resonant UX. I solve real problems through user research, clear docs, and iterative development.</p>
         <div class="row" style="margin-top:8px">
           <span class="chip">NYC • Open to FT/Contract</span>
           <span class="chip">iOS • Android • React</span>
@@ -152,11 +160,8 @@
 
       <aside class="card pad" aria-label="Contact & Links">
         <h2 style="margin-top:0">Contact</h2>
-        <p class="sm" style="margin:0 0 10px">📞 <a href="tel:+13322687795">(332) 268‑7795</a><br/>✉️ <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a></p>
-        <div class="grid" style="grid-template-columns:repeat(2,1fr)">
-          <a class="btn" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">PrepDeck Demo</a>
-          <a class="btn" href="https://sta-nyc-cannabis.squarespace.com/" target="_blank" rel="noopener">STA Site</a>
-        </div>
+        <p class="sm" style="margin:0 0 10px">📞 <a href="tel:+13322687795">(332) 268-7795</a><br/>✉️ <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a></p>
+        <!-- Removed duplicate project buttons per user request -->
       </aside>
     </div>
   </section>
@@ -166,10 +171,10 @@
     <h2>Experience</h2>
     <div class="grid projects">
       <article class="card pad">
-        <h3 style="margin-top:0">Transverb — Full‑Stack Product Developer <span class="sm">(Sept 2019 – Present)</span></h3>
+        <h3 style="margin-top:0">Transverb — Full-Stack Product Developer <span class="sm">(Sept 2019 – Present)</span></h3>
         <ul class="sm">
-          <li>Built Transverb <em>end‑to‑end</em>: native iOS/Android clients, backend integrations, and release tooling.</li>
-          <li>Implemented <strong>SwiftUI</strong> and <strong>Jetpack Compose</strong> with MVVM, Firebase Auth/RTDB/Storage, push, and GCP Translate for low‑latency multilingual chat.</li>
+          <li>Built Transverb <em>end-to-end</em>: native iOS/Android clients, backend integrations, and release tooling.</li>
+          <li>Implemented <strong>SwiftUI</strong> and <strong>Jetpack Compose</strong> with MVVM, Firebase Auth/RTDB/Storage, push, and GCP Translate for low-latency multilingual chat.</li>
           <li>Shipped via TestFlight/App Store & Google Play; handled QA, crash triage (Crashlytics), and release notes.</li>
           <li>Ran user interviews/usability tests; defined MVP, roadmap, and acceptance criteria.</li>
           <li>Created investor demos and pitch materials showcased during NY Tech Week.</li>
@@ -177,19 +182,19 @@
       </article>
 
       <article class="card pad">
-        <h3 style="margin-top:0">STA Cannabis — Web Developer / E‑Commerce Engineer <span class="sm">(Oct 2025 – Present)</span></h3>
+        <h3 style="margin-top:0">STA Cannabis — Web Developer / E-Commerce Engineer <span class="sm">(Oct 2025 – Present)</span></h3>
         <ul class="sm">
           <li>Coded a custom Squarespace skin (Developer Mode) with HTML/CSS and <strong>Snipcart</strong> flows to replace native templates.</li>
-          <li>Built responsive product grids, corporate hero banners, and cart/checkout logic with brand‑true UI.</li>
+          <li>Built responsive product grids, corporate hero banners, and cart/checkout logic with brand-true UI.</li>
         </ul>
       </article>
 
       <article class="card pad">
-        <h3 style="margin-top:0">PrepDeck — Full‑Stack Engineering (Michael Scott Solutions) <span class="sm">(Sept 2025 – Present)</span></h3>
+        <h3 style="margin-top:0">PrepDeck — Full-Stack Engineering (Michael Scott Catering) <span class="sm">(Sept 2025 – Present)</span></h3>
         <ul class="sm">
           <li>React + Vite dashboard to automate catering label generation, order tracking, and reporting.</li>
-          <li>Integrated Google Sheets APIs for real‑time sync; Material UI components and state‑driven data viz (Recharts).</li>
-          <li>Modular components and simple onboarding for non‑technical staff.
+          <li>Integrated Google Sheets APIs for real-time sync; Material UI components and state-driven data viz (Recharts).</li>
+          <li>Modular components and simple onboarding for non-technical staff.
           </li>
         </ul>
       </article>
@@ -197,7 +202,7 @@
       <article class="card pad">
         <h3 style="margin-top:0">Tulane University — Software Developer <span class="sm">(Apr 2019 – Jul 2019)</span></h3>
         <ul class="sm">
-          <li>Designed and maintained internal APIs supporting school‑wide platforms for faculty and students.</li>
+          <li>Designed and maintained internal APIs supporting school-wide platforms for faculty and students.</li>
           <li>Improved backend reliability and integrations; delivered on a tight timeline.</li>
         </ul>
       </article>
@@ -205,7 +210,7 @@
       <article class="card pad">
         <h3 style="margin-top:0">Naval Oceanographic Office — Computer Scientist <span class="sm">(Jun 2018 – Feb 2019)</span></h3>
         <ul class="sm">
-          <li>Developed geospatial software automations for mission‑critical Naval products.</li>
+          <li>Developed geospatial software automations for mission-critical Naval products.</li>
           <li>Enhanced <strong>ArcGIS</strong> services in Java; improved accuracy and throughput of data dissemination.</li>
           <li>Collaborated across teams to meet delivery timelines under government contracts.</li>
         </ul>
@@ -219,19 +224,37 @@
     <div class="grid projects">
       <article class="card pad">
         <h3 style="margin-top:0">Transverb — iOS/Android</h3>
-        <p class="sm">Real‑time multilingual messaging with native clients and Firebase/GCP translate stack.</p>
+        <p class="sm">Real-time multilingual messaging with native clients and Firebase/GCP translate stack.</p>
         <a class="btn primary" href="https://apps.apple.com/nz/app/transverb/id1606570882" target="_blank" rel="noopener">App Store</a>
       </article>
       <article class="card pad">
         <h3 style="margin-top:0">PrepDeck — Kitchen Dashboard</h3>
-        <p class="sm">React/Vite app for label printing and prep flow. Role‑based UI and data tables.</p>
+        <p class="sm">React/Vite app for label printing and prep flow. Role-based UI and data tables.</p>
         <a class="btn" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">Open Demo</a>
       </article>
       <article class="card pad">
-        <h3 style="margin-top:0">STA — E‑Commerce</h3>
+        <h3 style="margin-top:0">STA — E-Commerce</h3>
         <p class="sm">Squarespace + custom HTML/CSS, product grid and checkout integration.</p>
         <a class="btn" href="https://sta-nyc-cannabis.squarespace.com/" target="_blank" rel="noopener">Visit Site</a>
       </article>
+    </div>
+  </section>
+
+  <!-- KRC: Music & Live Experiences -->
+  <section id="krc" class="wrap section">
+    <h2>KRC — Music & Live Experiences</h2>
+    <p class="sub">I lead and play guitar for <strong>KRC</strong>, an R&B/funk band creating community through shows and storytelling. Recent stages include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); align-items:start">
+      <figure class="frame aspect-16x9 grad-border" style="margin:0;">
+        <video controls playsinline poster="perf.JPG">
+          <source src="krc.mp4" type="video/mp4" />
+        </video>
+      </figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="perf.JPG" alt="KRC live performance"/></figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="headshot.jpg" alt="Kody on stage"/></figure>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <a class="btn" href="https://www.instagram.com/thekrcband/" target="_blank" rel="noopener">Follow @thekrcband</a>
     </div>
   </section>
 
@@ -272,7 +295,7 @@
       <article class="card pad">
         <h3 style="margin-top:0">Publications</h3>
         <ul class="sm">
-          <li><a href="https://earthzine.org/using-nasa-eos-to-enhance-ground-level-ozone-monitoring-in-the-appalachian-region/" target="_blank" rel="noopener">Using NASA EOS to Enhance Ground‑Level Ozone Monitoring</a></li>
+          <li><a href="https://earthzine.org/using-nasa-eos-to-enhance-ground-level-ozone-monitoring-in-the-appalachian-region/" target="_blank" rel="noopener">Using NASA EOS to Enhance Ground-Level Ozone Monitoring</a></li>
           <li><a href="https://aquila.usm.edu/cgi/viewcontent.cgi?article=1617&context=honors_theses" target="_blank" rel="noopener">Translating Proverbs — Machine Translation Research</a></li>
         </ul>
       </article>
@@ -282,11 +305,10 @@
   <!-- CTA -->
   <section id="contact" class="wrap section card pad">
     <h2>Let’s build</h2>
-    <p class="sm">I can lead product, brand, and launch execution. Ask for the full proposal deck.</p>
+    <p class="sm">I can lead product, brand, and launch execution. Want to work together? Let's get in contact by clicking the link below!</p>
     <div class="row">
       <a class="btn primary" href="mailto:kody@transverbapp.com?subject=Let%E2%80%99s%20Build%20with%20Kody">Email Kody</a>
-      <a class="btn" href="Kody%20-%20Resume.pdf" download>Download Resume (PDF)</a>
-      <a class="btn" href="Kody%20Young.pdf" download>Download Creative Resume</a>
+      <a class="btn" href="kody-tech-resume" download>Download Resume (PDF)</a>
     </div>
   </section>
 
@@ -305,3 +327,4 @@
   </script>
 </body>
 </html>
+
