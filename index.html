@@ -11,6 +11,7 @@
   <meta property="og:description" content="Proof I ship: mobile apps, React dashboards, brand systems, and research pedigree (NASA/ArcGIS, MT)."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="headshot.jpg"/>
+
   <style>
     /* ========== TOKENS ========== */
     :root{
@@ -27,6 +28,12 @@
       --shadow:0 10px 30px rgba(0,0,0,.35), 0 4px 12px rgba(6,10,20,.35);
       --radius:20px;
       --max:1100px;
+
+      /* FX */
+      --grid: rgba(255,255,255,.04);
+      --grain: .06; /* grain opacity */
+      --orbA: radial-gradient(50% 60% at 30% 30%, #ff8bd588 0%, #b79bff55 35%, transparent 70%);
+      --orbB: radial-gradient(50% 60% at 70% 40%, #93c5fd88 0%, #b79bff55 38%, transparent 72%);
     }
 
     /* ========== BASE ========== */
@@ -37,8 +44,6 @@
       font:500 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial;
       -webkit-text-size-adjust:100%;
       text-size-adjust:100%;
-    }
-    body{
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(183,155,255,.22), transparent 60%),
         radial-gradient(900px 600px at 100% 0%, rgba(147,197,253,.18), transparent 50%),
@@ -65,7 +70,7 @@
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
     .card.pad{padding:clamp(16px,3.2vw,24px)}
     .section{margin-top:clamp(28px,6vw,42px)}
-    .section h2{font-size:clamp(22px,3.5vw,30px); margin:0 0 14px; letter-spacing:.2px}
+    .section h2{font-size:clamp(22px,3.5vw,30px); margin:0 0 14px; letter-spacing:.2px; display:flex; align-items:center; gap:.6rem}
     .section p.sub{color:var(--ink-dim); margin-top:-6px}
     .sm{font-size:.94rem; color:var(--ink-dim)}
     .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -74,6 +79,33 @@
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.95rem; background:#0b0e14; border:1px solid var(--line); border-radius:12px; padding:10px}
     .foot{margin-top:46px; padding:26px clamp(14px,4vw,20px); border-top:1px solid var(--line); color:var(--ink-dim)}
 
+    /* ========== GLOBAL FX LAYERS (grid + orbs + grain) ========== */
+    .fx{position:fixed; inset:0; pointer-events:none; z-index:0}
+    .fx-grid{
+      background:
+        linear-gradient(transparent, transparent 14px, var(--grid) 15px),
+        linear-gradient(90deg, transparent, transparent 14px, var(--grid) 15px);
+      background-size:15px 15px, 15px 15px;
+      mask-image: radial-gradient(60% 50% at 50% 40%, #000 60%, transparent 100%);
+      opacity:.45;
+    }
+    .fx-orbs{isolation:isolate; overflow:hidden}
+    .fx-orbs .orb{
+      position:absolute; width:52vmax; height:52vmax; border-radius:50%;
+      filter:blur(20px) saturate(115%);
+      mix-blend-mode:screen; opacity:.33; will-change:transform;
+      animation:float 22s ease-in-out infinite alternate;
+    }
+    .orb.a{top:-18vmax; left:-12vmax; background:var(--orbA)}
+    .orb.b{bottom:-20vmax; right:-10vmax; background:var(--orbB); animation-duration:26s}
+    @keyframes float{
+      from{transform:translate3d(0,0,0) rotate(0.001deg)}
+      to{transform:translate3d(2.5vmax,-1.8vmax,0) rotate(0.001deg)}
+    }
+
+    /* SVG grain using feTurbulence (very light) */
+    .fx-grain{opacity:var(--grain); mix-blend-mode:overlay}
+
     /* ========== TOPNAV ========== */
     .topnav{
       position:sticky; top:0; z-index:30;
@@ -81,23 +113,30 @@
       background:linear-gradient(180deg, rgba(21,24,35,.88), rgba(21,24,35,.65));
       border-bottom:1px solid var(--line);
     }
-    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
     .brandmark{display:flex; align-items:center; gap:.6rem; min-width:0}
     .branddot{width:10px; height:10px; border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--brand-3), var(--brand))}
     .topnav nav{
+      order:2;
       display:flex; gap:8px; align-items:center;
+      flex:1 1 100%;
       overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
-      padding-block:6px; mask-image:linear-gradient(90deg,transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+      white-space:nowrap; padding-block:6px;
+      mask-image:linear-gradient(90deg,transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
     }
     .topnav nav::-webkit-scrollbar{display:none}
     .topnav nav a{
       color:var(--ink-dim);
       border:1px solid var(--line);
       border-radius:999px;
-      padding:.4rem .7rem;
+      padding:.45rem .7rem; line-height:1;
       font-size:.92rem;
       flex:0 0 auto;
       background:rgba(255,255,255,.02);
+    }
+    @media (min-width:900px){
+      .topnav .wrap{flex-wrap:nowrap}
+      .topnav nav{order:1; flex:0 0 auto; overflow:visible; white-space:normal; padding-block:0}
     }
 
     /* ========== HERO ========== */
@@ -113,6 +152,9 @@
     .hero > .wrap{position:relative; z-index:1}
     .hero h1{font-weight:800; font-size:clamp(28px,6vw,54px); line-height:1.08; letter-spacing:-.02em; margin:10px 0 10px}
     .hero p.lede{color:var(--ink); max-width:70ch; font-size:clamp(15px,3.8vw,19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+    /* SVG squiggle icon next to section titles */
+    .squig{display:inline-block; width:28px; height:14px; vertical-align:middle; opacity:.8}
 
     /* ========== LAYOUTS ========== */
     .two-col{display:grid; grid-template-columns:1fr; gap:22px}
@@ -132,7 +174,6 @@
     }
 
     /* ========== RESPONSIVE TWEAKS ========== */
-    /* Make button rows stack nicely on narrow screens */
     @media (max-width:520px){
       .row .btn{flex:1 1 calc(50% - 12px)}
       .row .btn:nth-last-child(1):only-child{flex-basis:100%}
@@ -140,20 +181,16 @@
     @media (max-width:380px){
       .row .btn{flex-basis:100%}
     }
-
-    /* So the KRC media grid doesn’t require wide columns on phones */
     #krc .grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start}
-
-    /* Tone down heavy filters on low-power / small screens */
     @media (max-width:480px){
-      .hero .bg{opacity:.16}
       .topnav{backdrop-filter:saturate(140%) blur(8px)}
+      .hero .bg{opacity:.16}
     }
 
     /* Print simplifications */
     @media print{
       body{background:#fff; color:#111}
-      .topnav, .hero .bg, .hero .veil{display:none !important}
+      .fx, .topnav, .hero .bg, .hero .veil{display:none !important}
       .card{border-color:#ddd; box-shadow:none}
       a{color:#000; text-decoration:underline}
       .btn{display:none}
@@ -161,39 +198,10 @@
       .section{margin-top:18px}
     }
 
-    /* --- NAV FIX: prevent overlap/stacking on small screens --- */
-.topnav .wrap{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-  flex-wrap:wrap;              /* allow second row for nav */
-}
-
-.topnav .brandmark{order:1; flex:0 1 auto; min-width:0}
-.topnav nav{
-  order:2;
-  display:flex; align-items:center; gap:8px;
-  flex:1 1 100%;               /* take full width on its own row */
-  overflow-x:auto;             /* horizontal scroll if needed */
-  -webkit-overflow-scrolling:touch;
-  white-space:nowrap;          /* keep links on one line */
-  padding-block:6px;
-  scrollbar-width:none;
-}
-.topnav nav::-webkit-scrollbar{display:none}
-.topnav nav a{
-  display:inline-flex; align-items:center;       /* ensure consistent height */
-  line-height:1; padding:.45rem .7rem; 
-  border:1px solid var(--line); border-radius:999px;
-  background:rgba(255,255,255,.02); color:var(--ink-dim); 
-}
-
-/* Desktop: put nav back on the same row, no scroll */
-@media (min-width:900px){
-  .topnav .wrap{flex-wrap:nowrap}
-  .topnav nav{
-    order:1; flex:0 0 auto; overflow:visible; white-space:normal; padding-block:0;
-  }
-}
-
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .fx-orbs .orb{animation:none; transform:none}
+    }
   </style>
 
   <!-- Schema.org Person -->
@@ -215,6 +223,23 @@
   </script>
 </head>
 <body>
+  <!-- ******** GLOBAL FX LAYERS (sit under all content) ******** -->
+  <div class="fx fx-grid" aria-hidden="true"></div>
+
+  <div class="fx fx-orbs" aria-hidden="true">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+  </div>
+
+  <!-- SVG grain (super light) -->
+  <svg class="fx fx-grain" aria-hidden="true" width="100%" height="100%" preserveAspectRatio="none">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"></rect>
+  </svg>
+
   <!-- Top Nav -->
   <div class="topnav" role="navigation" aria-label="Primary">
     <div class="wrap">
@@ -251,7 +276,17 @@
   <section id="summary" class="wrap section">
     <div class="two-col">
       <article class="card pad" aria-labelledby="prof-head">
-        <h2 id="prof-head">Personal Profile</h2>
+        <h2 id="prof-head">
+          <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ff8bd5"/><stop offset="1" stop-color="#b79bff"/>
+              </linearGradient>
+            </defs>
+            <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Personal Profile
+        </h2>
         <p class="sm">Founder and product-minded creative technologist with experience leading 0→1 product development. Skilled in cross-functional collaboration, shipping-focused execution, and emotionally resonant UX. I solve real problems through user research, clear docs, and iterative development.</p>
         <div class="row" style="margin-top:8px">
           <span class="chip">NYC • Open to FT/Contract</span>
@@ -261,7 +296,12 @@
       </article>
 
       <aside class="card pad" aria-label="Contact & Links">
-        <h2 style="margin-top:0">Contact</h2>
+        <h2 style="margin-top:0">
+          <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Contact
+        </h2>
         <p class="sm" style="margin:0 0 10px">📞 <a href="tel:+13322687795">(332) 268-7795</a><br/>✉️ <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a></p>
       </aside>
     </div>
@@ -269,7 +309,12 @@
 
   <!-- EXPERIENCE -->
   <section id="experience" class="wrap section">
-    <h2>Experience</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Experience
+    </h2>
     <div class="grid projects">
       <article class="card pad">
         <h3 style="margin-top:0">Transverb — Full-Stack Product Developer <span class="sm">(Sept 2019 – Present)</span></h3>
@@ -320,19 +365,24 @@
 
   <!-- PROJECTS / LINKS -->
   <section id="projects" class="wrap section">
-    <h2>Selected Projects & Links</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Selected Projects & Links
+    </h2>
     <div class="grid projects">
-      <article class="card pad">
+      <article class="card pad grad-border">
         <h3 style="margin-top:0">Transverb — iOS/Android</h3>
         <p class="sm">Real-time multilingual messaging with native clients and Firebase/GCP translate stack.</p>
         <a class="btn primary" href="https://apps.apple.com/nz/app/transverb/id1606570882" target="_blank" rel="noopener">App Store</a>
       </article>
-      <article class="card pad">
+      <article class="card pad grad-border">
         <h3 style="margin-top:0">PrepDeck — Kitchen Dashboard</h3>
         <p class="sm">React/Vite app for label printing and prep flow. Role-based UI and data tables.</p>
         <a class="btn" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">Open Demo</a>
       </article>
-      <article class="card pad">
+      <article class="card pad grad-border">
         <h3 style="margin-top:0">STA — E-Commerce</h3>
         <p class="sm">Squarespace + custom HTML/CSS, product grid and checkout integration.</p>
         <a class="btn" href="https://sta-nyc-cannabis.squarespace.com/" target="_blank" rel="noopener">Visit Site</a>
@@ -342,7 +392,12 @@
 
   <!-- KRC: Music & Live Experiences -->
   <section id="krc" class="wrap section">
-    <h2>KRC — Music & Live Experiences</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      KRC — Music & Live Experiences
+    </h2>
     <p class="sub">I lead and play guitar for <strong>KRC</strong>, an R&B/funk band creating community through shows and storytelling. Recent stages include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start">
       <figure class="frame aspect-16x9 grad-border" style="margin:0;">
@@ -360,7 +415,12 @@
 
   <!-- SKILLS -->
   <section id="skills" class="wrap section">
-    <h2>Skills</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Skills
+    </h2>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
       <article class="card pad">
         <h3 style="margin-top:0">Mobile</h3>
@@ -383,7 +443,12 @@
 
   <!-- EDUCATION & RESEARCH -->
   <section id="education" class="wrap section">
-    <h2>Education & Research</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Education & Research
+    </h2>
     <div class="grid projects">
       <article class="card pad">
         <h3 style="margin-top:0">University of Southern Mississippi — B.S. Computer Science; B.A. Spanish <span class="sm">(2018)</span></h3>
@@ -404,7 +469,515 @@
 
   <!-- CTA -->
   <section id="contact" class="wrap section card pad">
-    <h2>Let’s build</h2>
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Let’s build
+    </h2>
+    <p class="sm">I can lead product, brand, and launch execution. Want to work together? Let's get in contact by clicking the link below!</p>
+    <div class="row">
+      <a class="btn primary" href="mailto:kody@transverbapp.com?subject=Let%E2%80%99s%20Build%20with%20Kody">Email Kody</a>
+      <a class="btn" href="kody-tech-resume" download>Download Resume (PDF)</a>
+    </div>
+  </section>
+
+  <footer class="foot wrap sm">
+    © <span id="y"></span> Kody Young • New York, NY • <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth anchors (respects reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior: prefersReduced ? 'auto':'smooth'});
+    });
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kody Young — Creative Technologist • Product Engineer • Musician</title>
+  <meta name="description" content="Founder of Transverb. Product-minded creative technologist shipping 0→1 mobile apps, data-driven web tools, and brand experiences. Naval Oceanographic Office, Tulane, Transverb, PrepDeck, STA."/>
+  <link rel="icon" href="assets/favicon.png">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kody Young — Creative Technologist • Product Engineer"/>
+  <meta property="og:description" content="Proof I ship: mobile apps, React dashboards, brand systems, and research pedigree (NASA/ArcGIS, MT)."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="headshot.jpg"/>
+
+  <style>
+    /* ========== TOKENS ========== */
+    :root{
+      --bg:#0f1116;          /* page bg */
+      --panel:#151823;       /* card bg */
+      --elev:#1b2030;        /* elevated bg */
+      --ink:#eef2ff;         /* primary text */
+      --ink-dim:#c7cbe2;     /* secondary text */
+      --line:#2a3143;        /* borders */
+      --brand:#b79bff;       /* lilac */
+      --brand-2:#93c5fd;     /* sky */
+      --brand-3:#ff8bd5;     /* pink */
+      --ok:#34d399; --warn:#f59e0b; --bad:#fb7185;
+      --shadow:0 10px 30px rgba(0,0,0,.35), 0 4px 12px rgba(6,10,20,.35);
+      --radius:20px;
+      --max:1100px;
+
+      /* FX */
+      --grid: rgba(255,255,255,.04);
+      --grain: .06; /* grain opacity */
+      --orbA: radial-gradient(50% 60% at 30% 30%, #ff8bd588 0%, #b79bff55 35%, transparent 70%);
+      --orbB: radial-gradient(50% 60% at 70% 40%, #93c5fd88 0%, #b79bff55 38%, transparent 72%);
+    }
+
+    /* ========== BASE ========== */
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      color:var(--ink);
+      font:500 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(183,155,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 100% 0%, rgba(147,197,253,.18), transparent 50%),
+        linear-gradient(180deg, #0f1116 0%, #0b0d12 40%, #0e1220 100%);
+    }
+    a{color:var(--brand-2); text-decoration:none}
+    a:hover{filter:brightness(1.12)}
+    a:focus-visible, button:focus-visible{outline:2px solid var(--brand-2); outline-offset:2px; border-radius:10px}
+
+    .wrap{max-width:var(--max); margin-inline:auto; padding:24px clamp(14px,4vw,20px)}
+    .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .8rem; border:1px solid var(--line); border-radius:999px; color:var(--ink-dim); background:rgba(255,255,255,.02)}
+    .grid{display:grid; gap:22px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:clamp(.8rem,.9rem,1rem) clamp(1rem,3.5vw,1.2rem);
+      min-height:44px;
+      border-radius:14px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      color:var(--ink); box-shadow:var(--shadow); font-weight:700; white-space:nowrap;
+    }
+    .btn.primary{background:linear-gradient(180deg, rgba(183,155,255,.25), rgba(183,155,255,.05)); border-color:#7b61ff44}
+    .btn.ghost{background:transparent}
+    .btn .badge{background:var(--elev); padding:.25rem .55rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card.pad{padding:clamp(16px,3.2vw,24px)}
+    .section{margin-top:clamp(28px,6vw,42px)}
+    .section h2{font-size:clamp(22px,3.5vw,30px); margin:0 0 14px; letter-spacing:.2px; display:flex; align-items:center; gap:.6rem}
+    .section p.sub{color:var(--ink-dim); margin-top:-6px}
+    .sm{font-size:.94rem; color:var(--ink-dim)}
+    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .6rem; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); font-size:.85rem}
+    .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.95rem; background:#0b0e14; border:1px solid var(--line); border-radius:12px; padding:10px}
+    .foot{margin-top:46px; padding:26px clamp(14px,4vw,20px); border-top:1px solid var(--line); color:var(--ink-dim)}
+
+    /* ========== GLOBAL FX LAYERS (grid + orbs + grain) ========== */
+    .fx{position:fixed; inset:0; pointer-events:none; z-index:0}
+    .fx-grid{
+      background:
+        linear-gradient(transparent, transparent 14px, var(--grid) 15px),
+        linear-gradient(90deg, transparent, transparent 14px, var(--grid) 15px);
+      background-size:15px 15px, 15px 15px;
+      mask-image: radial-gradient(60% 50% at 50% 40%, #000 60%, transparent 100%);
+      opacity:.45;
+    }
+    .fx-orbs{isolation:isolate; overflow:hidden}
+    .fx-orbs .orb{
+      position:absolute; width:52vmax; height:52vmax; border-radius:50%;
+      filter:blur(20px) saturate(115%);
+      mix-blend-mode:screen; opacity:.33; will-change:transform;
+      animation:float 22s ease-in-out infinite alternate;
+    }
+    .orb.a{top:-18vmax; left:-12vmax; background:var(--orbA)}
+    .orb.b{bottom:-20vmax; right:-10vmax; background:var(--orbB); animation-duration:26s}
+    @keyframes float{
+      from{transform:translate3d(0,0,0) rotate(0.001deg)}
+      to{transform:translate3d(2.5vmax,-1.8vmax,0) rotate(0.001deg)}
+    }
+
+    /* SVG grain using feTurbulence (very light) */
+    .fx-grain{opacity:var(--grain); mix-blend-mode:overlay}
+
+    /* ========== TOPNAV ========== */
+    .topnav{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(180deg, rgba(21,24,35,.88), rgba(21,24,35,.65));
+      border-bottom:1px solid var(--line);
+    }
+    .topnav .wrap{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .brandmark{display:flex; align-items:center; gap:.6rem; min-width:0}
+    .branddot{width:10px; height:10px; border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--brand-3), var(--brand))}
+    .topnav nav{
+      order:2;
+      display:flex; gap:8px; align-items:center;
+      flex:1 1 100%;
+      overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+      white-space:nowrap; padding-block:6px;
+      mask-image:linear-gradient(90deg,transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+    }
+    .topnav nav::-webkit-scrollbar{display:none}
+    .topnav nav a{
+      color:var(--ink-dim);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:.45rem .7rem; line-height:1;
+      font-size:.92rem;
+      flex:0 0 auto;
+      background:rgba(255,255,255,.02);
+    }
+    @media (min-width:900px){
+      .topnav .wrap{flex-wrap:nowrap}
+      .topnav nav{order:1; flex:0 0 auto; overflow:visible; white-space:normal; padding-block:0}
+    }
+
+    /* ========== HERO ========== */
+    .hero{position:relative; padding:clamp(48px,10vw,72px) 0 22px; overflow:hidden; border-bottom:1px solid var(--line)}
+    .hero .bg{
+      position:absolute; inset:0; opacity:.18;
+      background-image:url('https://www.dropbox.com/scl/fi/pc7d0eu7jhql2x9a138t8/IMG_6992.jpg?dl=1');
+      background-size:cover; background-position:center 30%;
+      filter:saturate(115%) contrast(105%);
+      pointer-events:none;
+    }
+    .hero .veil{position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(12,14,20,.55), rgba(12,14,20,.25), rgba(12,14,20,.65))}
+    .hero > .wrap{position:relative; z-index:1}
+    .hero h1{font-weight:800; font-size:clamp(28px,6vw,54px); line-height:1.08; letter-spacing:-.02em; margin:10px 0 10px}
+    .hero p.lede{color:var(--ink); max-width:70ch; font-size:clamp(15px,3.8vw,19px); text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+    /* SVG squiggle icon next to section titles */
+    .squig{display:inline-block; width:28px; height:14px; vertical-align:middle; opacity:.8}
+
+    /* ========== LAYOUTS ========== */
+    .two-col{display:grid; grid-template-columns:1fr; gap:22px}
+    @media (min-width:900px){ .two-col{grid-template-columns:1.2fr .8fr} }
+
+    /* Media framing helpers (KRC gallery) */
+    .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00))}
+    .aspect-16x9{aspect-ratio:16/9}
+    .aspect-4x5{aspect-ratio:4/5}
+    .frame img,.frame video{width:100%; height:100%; object-fit:cover; object-position:center}
+
+    /* Subtle gradient border utility */
+    .grad-border{
+      background:linear-gradient(var(--panel),var(--panel)) padding-box,
+                 linear-gradient(120deg, var(--brand-3), var(--brand), var(--brand-2)) border-box;
+      border:1px solid transparent; border-radius:var(--radius)
+    }
+
+    /* ========== RESPONSIVE TWEAKS ========== */
+    @media (max-width:520px){
+      .row .btn{flex:1 1 calc(50% - 12px)}
+      .row .btn:nth-last-child(1):only-child{flex-basis:100%}
+    }
+    @media (max-width:380px){
+      .row .btn{flex-basis:100%}
+    }
+    #krc .grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start}
+    @media (max-width:480px){
+      .topnav{backdrop-filter:saturate(140%) blur(8px)}
+      .hero .bg{opacity:.16}
+    }
+
+    /* Print simplifications */
+    @media print{
+      body{background:#fff; color:#111}
+      .fx, .topnav, .hero .bg, .hero .veil{display:none !important}
+      .card{border-color:#ddd; box-shadow:none}
+      a{color:#000; text-decoration:underline}
+      .btn{display:none}
+      .wrap{max-width:100%; padding:0}
+      .section{margin-top:18px}
+    }
+
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .fx-orbs .orb{animation:none; transform:none}
+    }
+  </style>
+
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Kody Young",
+    "jobTitle":"Creative Technologist, Product Engineer, Musician",
+    "url":"https://yngkody.github.io",
+    "image":"assets/portrait.jpg",
+    "email":"mailto:kody@transverbapp.com",
+    "sameAs":[
+      "https://github.com/yngkody",
+      "https://stackoverflow.com/users/6910270/yng-kody",
+      "https://www.linkedin.com/in/yng-kody/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- ******** GLOBAL FX LAYERS (sit under all content) ******** -->
+  <div class="fx fx-grid" aria-hidden="true"></div>
+
+  <div class="fx fx-orbs" aria-hidden="true">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+  </div>
+
+  <!-- SVG grain (super light) -->
+  <svg class="fx fx-grain" aria-hidden="true" width="100%" height="100%" preserveAspectRatio="none">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"></rect>
+  </svg>
+
+  <!-- Top Nav -->
+  <div class="topnav" role="navigation" aria-label="Primary">
+    <div class="wrap">
+      <div class="brandmark"><span class="branddot"></span><strong>Kody Young</strong><span class="pill" aria-hidden="true">Creative Technologist</span></div>
+      <nav class="sm" aria-label="Section links">
+        <a href="#summary">Summary</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#krc">Music</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="bg" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="pill">Founder • Product Engineer • Musician</div>
+      <h1>Product-minded engineer shipping 0→1 apps, tools, and shows people feel.</h1>
+      <p class="lede">Founder of <strong>Transverb</strong> (real-time multilingual messaging). Hands-on builder for <strong>PrepDeck</strong> (React/Vite dashboard for a live kitchen) and <strong>STA</strong> (custom e-commerce skin). Prior—<strong>Naval Oceanographic Office</strong> (ArcGIS automation) & <strong>Tulane</strong> (APIs). NYC-based.</p>
+      <div class="row" style="margin-top:12px">
+        <a class="btn primary" href="https://apps.apple.com/us/app/transverb/id1606570882?platform=ipad" target="_blank" rel="noopener">Transverb <span class="badge">App Store</span></a>
+        <a class="btn" href="kody-tech-resume" download>Download Resume</a>
+        <a class="btn ghost" href="https://github.com/yngkody" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://stackoverflow.com/users/6910270/yng-kody" target="_blank" rel="noopener">Stack Overflow</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMMARY + CONTACT SIDE -->
+  <section id="summary" class="wrap section">
+    <div class="two-col">
+      <article class="card pad" aria-labelledby="prof-head">
+        <h2 id="prof-head">
+          <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ff8bd5"/><stop offset="1" stop-color="#b79bff"/>
+              </linearGradient>
+            </defs>
+            <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Personal Profile
+        </h2>
+        <p class="sm">Founder and product-minded creative technologist with experience leading 0→1 product development. Skilled in cross-functional collaboration, shipping-focused execution, and emotionally resonant UX. I solve real problems through user research, clear docs, and iterative development.</p>
+        <div class="row" style="margin-top:8px">
+          <span class="chip">NYC • Open to FT/Contract</span>
+          <span class="chip">iOS • Android • React</span>
+          <span class="chip">English • Spanish</span>
+        </div>
+      </article>
+
+      <aside class="card pad" aria-label="Contact & Links">
+        <h2 style="margin-top:0">
+          <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Contact
+        </h2>
+        <p class="sm" style="margin:0 0 10px">📞 <a href="tel:+13322687795">(332) 268-7795</a><br/>✉️ <a href="mailto:kody@transverbapp.com">kody@transverbapp.com</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="wrap section">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Experience
+    </h2>
+    <div class="grid projects">
+      <article class="card pad">
+        <h3 style="margin-top:0">Transverb — Full-Stack Product Developer <span class="sm">(Sept 2019 – Present)</span></h3>
+        <ul class="sm">
+          <li>Built Transverb <em>end-to-end</em>: native iOS/Android clients, backend integrations, and release tooling.</li>
+          <li>Implemented <strong>SwiftUI</strong> and <strong>Jetpack Compose</strong> with MVVM, Firebase Auth/RTDB/Storage, push, and GCP Translate for low-latency multilingual chat.</li>
+          <li>Shipped via TestFlight/App Store & Google Play; handled QA, crash triage (Crashlytics), and release notes.</li>
+          <li>Ran user interviews/usability tests; defined MVP, roadmap, and acceptance criteria.</li>
+          <li>Created investor demos and pitch materials showcased during NY Tech Week.</li>
+        </ul>
+      </article>
+
+      <article class="card pad">
+        <h3 style="margin-top:0">STA Cannabis — Web Developer / E-Commerce Engineer <span class="sm">(Oct 2025 – Present)</span></h3>
+        <ul class="sm">
+          <li>Coded a custom Squarespace skin (Developer Mode) with HTML/CSS and <strong>Snipcart</strong> flows to replace native templates.</li>
+          <li>Built responsive product grids, corporate hero banners, and cart/checkout logic with brand-true UI.</li>
+        </ul>
+      </article>
+
+      <article class="card pad">
+        <h3 style="margin-top:0">PrepDeck — Full-Stack Engineering (Michael Scott Catering) <span class="sm">(Sept 2025 – Present)</span></h3>
+        <ul class="sm">
+          <li>React + Vite dashboard to automate catering label generation, order tracking, and reporting.</li>
+          <li>Integrated Google Sheets APIs for real-time sync; Material UI components and state-driven data viz (Recharts).</li>
+          <li>Modular components and simple onboarding for non-technical staff.</li>
+        </ul>
+      </article>
+
+      <article class="card pad">
+        <h3 style="margin-top:0">Tulane University — Software Developer <span class="sm">(Apr 2019 – Jul 2019)</span></h3>
+        <ul class="sm">
+          <li>Designed and maintained internal APIs supporting school-wide platforms for faculty and students.</li>
+          <li>Improved backend reliability and integrations; delivered on a tight timeline.</li>
+        </ul>
+      </article>
+
+      <article class="card pad">
+        <h3 style="margin-top:0">Naval Oceanographic Office — Computer Scientist <span class="sm">(Jun 2018 – Feb 2019)</span></h3>
+        <ul class="sm">
+          <li>Developed geospatial software automations for mission-critical Naval products.</li>
+          <li>Enhanced <strong>ArcGIS</strong> services in Java; improved accuracy and throughput of data dissemination.</li>
+          <li>Collaborated across teams to meet delivery timelines under government contracts.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS / LINKS -->
+  <section id="projects" class="wrap section">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Selected Projects & Links
+    </h2>
+    <div class="grid projects">
+      <article class="card pad grad-border">
+        <h3 style="margin-top:0">Transverb — iOS/Android</h3>
+        <p class="sm">Real-time multilingual messaging with native clients and Firebase/GCP translate stack.</p>
+        <a class="btn primary" href="https://apps.apple.com/nz/app/transverb/id1606570882" target="_blank" rel="noopener">App Store</a>
+      </article>
+      <article class="card pad grad-border">
+        <h3 style="margin-top:0">PrepDeck — Kitchen Dashboard</h3>
+        <p class="sm">React/Vite app for label printing and prep flow. Role-based UI and data tables.</p>
+        <a class="btn" href="https://preppery.vercel.app/upload" target="_blank" rel="noopener">Open Demo</a>
+      </article>
+      <article class="card pad grad-border">
+        <h3 style="margin-top:0">STA — E-Commerce</h3>
+        <p class="sm">Squarespace + custom HTML/CSS, product grid and checkout integration.</p>
+        <a class="btn" href="https://sta-nyc-cannabis.squarespace.com/" target="_blank" rel="noopener">Visit Site</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- KRC: Music & Live Experiences -->
+  <section id="krc" class="wrap section">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      KRC — Music & Live Experiences
+    </h2>
+    <p class="sub">I lead and play guitar for <strong>KRC</strong>, an R&B/funk band creating community through shows and storytelling. Recent stages include Bowery Electric, Berlin Under, FirstLive, and the Paramount Hotel in Times Square.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); align-items:start">
+      <figure class="frame aspect-16x9 grad-border" style="margin:0;">
+        <video controls playsinline preload="metadata" poster="perf.JPG" style="background:#0b0e14" width="100%">
+          <source src="krc.mp4" type="video/mp4" />
+        </video>
+      </figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="perf.JPG" alt="KRC live performance" loading="lazy" decoding="async"/></figure>
+      <figure class="frame aspect-4x5 grad-border" style="margin:0;"><img src="headshot.jpg" alt="Kody on stage" loading="lazy" decoding="async"/></figure>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <a class="btn" href="https://www.instagram.com/thekrcband/" target="_blank" rel="noopener">Follow @thekrcband</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="wrap section">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Skills
+    </h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <article class="card pad">
+        <h3 style="margin-top:0">Mobile</h3>
+        <p class="sm">Swift, SwiftUI, Combine, Kotlin, Jetpack Compose, Coroutines, UIKit, Core Data, MVVM, Coordinator</p>
+      </article>
+      <article class="card pad">
+        <h3 style="margin-top:0">Web & Infra</h3>
+        <p class="sm">React, Vite, Node/Cloud Functions, REST/JSON, Firebase (Auth/RTDB/Storage), Google Cloud Translate, Recharts, Material UI</p>
+      </article>
+      <article class="card pad">
+        <h3 style="margin-top:0">Data & Geo</h3>
+        <p class="sm">ArcGIS, geoprocess automation, Crashlytics, analytics instrumentation</p>
+      </article>
+      <article class="card pad">
+        <h3 style="margin-top:0">Tooling & Process</h3>
+        <p class="sm">Xcode, Android Studio, Git, App Store Connect, TestFlight, Agile, Product roadmapping, user research, wireframing (Figma)</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDUCATION & RESEARCH -->
+  <section id="education" class="wrap section">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Education & Research
+    </h2>
+    <div class="grid projects">
+      <article class="card pad">
+        <h3 style="margin-top:0">University of Southern Mississippi — B.S. Computer Science; B.A. Spanish <span class="sm">(2018)</span></h3>
+      </article>
+      <article class="card pad">
+        <h3 style="margin-top:0">University of New Orleans — Graduate Study <span class="sm">(2019, 1 Semester)</span></h3>
+        <p class="sm">Computer Science M.S. coursework; Electrical Engineering M.Eng. coursework.</p>
+      </article>
+      <article class="card pad">
+        <h3 style="margin-top:0">Publications</h3>
+        <ul class="sm">
+          <li><a href="https://earthzine.org/using-nasa-eos-to-enhance-ground-level-ozone-monitoring-in-the-appalachian-region/" target="_blank" rel="noopener">Using NASA EOS to Enhance Ground-Level Ozone Monitoring</a></li>
+          <li><a href="https://aquila.usm.edu/cgi/viewcontent.cgi?article=1617&context=honors_theses" target="_blank" rel="noopener">Translating Proverbs — Machine Translation Research</a></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="wrap section card pad">
+    <h2>
+      <svg class="squig" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 20 C 8 5, 18 5, 24 20 S 42 35, 58 12" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      Let’s build
+    </h2>
     <p class="sm">I can lead product, brand, and launch execution. Want to work together? Let's get in contact by clicking the link below!</p>
     <div class="row">
       <a class="btn primary" href="mailto:kody@transverbapp.com?subject=Let%E2%80%99s%20Build%20with%20Kody">Email Kody</a>
