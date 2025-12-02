@@ -6,18 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #050509;
-      --bg-soft: #0f1017;
-      --card: #14151f;
-      --accent: #ff4b6b;
-      --accent-soft: rgba(255, 75, 107, 0.14);
-      --text: #f8f8ff;
-      --muted: #a4a7bd;
-      --border: #272839;
-      --radius-xl: 24px;
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --text: #111118;
+      --muted: #6e6e73;
+      --border: #e2e2e7;
+      --accent: #2563eb; /* soft blue */
+      --accent-soft: #e5efff;
       --radius-lg: 18px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --font-sans: -apple-system, BlinkMacSystemFont, system-ui, "SF Pro Text",
         "Segoe UI", sans-serif;
     }
 
@@ -29,20 +28,20 @@
 
     body {
       font-family: var(--font-sans);
-      background: radial-gradient(circle at top, #191a2b 0, #050509 55%);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     img {
       max-width: 100%;
       display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .page {
@@ -53,18 +52,19 @@
 
     /* NAV */
     .nav {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
-      position: sticky;
-      top: 0;
-      padding: 10px 12px;
+      padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(5, 5, 9, 0.92);
-      backdrop-filter: blur(18px);
-      z-index: 10;
+      background: rgba(250, 250, 252, 0.9);
+      border: 1px solid rgba(226, 226, 231, 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      margin-bottom: 32px;
     }
 
     .nav-left {
@@ -73,27 +73,21 @@
       gap: 10px;
     }
 
-    .nav-logo-badge {
-      width: 32px;
-      height: 32px;
+    .nav-logo {
+      width: 30px;
+      height: 30px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #ff9fc9 35%, #050509 70%);
+      background: #111118;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #050509;
-      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-title {
-      display: flex;
-      flex-direction: column;
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .nav-title-main {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
     }
 
@@ -106,206 +100,170 @@
       display: flex;
       gap: 12px;
       align-items: center;
+      font-size: 13px;
     }
 
     .nav-link {
-      font-size: 13px;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
       color: var(--muted);
-      border: 1px solid transparent;
     }
 
     .nav-link:hover {
-      border-color: rgba(255, 255, 255, 0.1);
+      background: #f1f1f5;
       color: var(--text);
     }
 
     .nav-cta {
-      font-size: 13px;
-      padding: 7px 16px;
+      padding: 7px 15px;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #ff4b6b, #ff9f6a);
-      color: #050509;
-      font-weight: 600;
-      box-shadow: 0 12px 30px rgba(255, 75, 107, 0.45);
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      white-space: nowrap;
     }
 
     .nav-cta:hover {
-      transform: translateY(-1px);
+      background: #1d4ed8;
     }
 
     /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
       gap: 32px;
-      margin-top: 32px;
+      margin-top: 24px;
       margin-bottom: 40px;
       align-items: center;
     }
 
-    .hero-tag {
+    .hero-label {
       font-size: 12px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 10, 18, 0.9);
+      background: #f3f4f6;
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .hero-tag-dot {
+    .hero-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: radial-gradient(circle, #72ffb4, #1ddf7a);
-      box-shadow: 0 0 0 3px rgba(114, 255, 180, 0.25);
+      background: #22c55e;
     }
 
     .hero-title {
-      font-size: clamp(34px, 5vw, 44px);
-      font-weight: 700;
+      font-size: clamp(32px, 4.4vw, 40px);
+      font-weight: 650;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero-highlight {
-      background: linear-gradient(135deg, #ffb2ff, #79bfff);
-      -webkit-background-clip: text;
-      color: transparent;
+      color: var(--accent);
     }
 
-    .hero-sub {
+    .hero-copy {
       font-size: 15px;
       color: var(--muted);
       max-width: 420px;
       margin-bottom: 22px;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .btn-primary {
       padding: 10px 20px;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #ff4b6b, #ff9f6a);
-      color: #050509;
+      background: var(--accent);
+      color: #ffffff;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
-      box-shadow: 0 14px 36px rgba(255, 75, 107, 0.45);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
     }
 
     .btn-secondary {
       padding: 10px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(10, 10, 20, 0.9);
+      border: 1px solid var(--border);
+      background: #ffffff;
       color: var(--text);
       font-size: 14px;
       cursor: pointer;
     }
 
     .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
       font-size: 12px;
       color: var(--muted);
-      margin-top: 10px;
-    }
-
-    .hero-meta span strong {
-      color: var(--text);
-      font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     /* HERO PREVIEW */
     .hero-preview {
-      position: relative;
-      padding: 18px;
+      background: var(--bg-alt);
       border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, #ffb2c1 0, #1c1014 38%, #050509 85%);
+      padding: 16px;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      overflow: hidden;
     }
 
     .hero-chip-row {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 14px;
-      flex-wrap: wrap;
     }
 
     .hero-chip {
       font-size: 11px;
       padding: 4px 9px;
       border-radius: 999px;
-      background: rgba(5, 5, 9, 0.7);
-      color: #f8f8ff;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #f4f4f5;
+      color: var(--muted);
     }
 
     .hero-preview-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 10px;
-      align-items: stretch;
     }
 
     .mock-card {
-      border-radius: 20px;
-      background: #fdfbfa;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-      height: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    .mock-card.dark {
-      background: #040814;
-    }
-
-    .mock-image {
-      flex: 1;
-      overflow: hidden;
-    }
-
     .mock-label {
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #444;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid #e5e7eb;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #f2efe9;
-    }
-
-    .mock-label span:last-child {
-      font-size: 11px;
-      opacity: 0.7;
-    }
-
-    .mock-label.dark {
-      background: #060a18;
-      color: #e7ebff;
-    }
-
-    .mock-label.dark span:last-child {
-      opacity: 0.85;
+      background: #f9fafb;
     }
 
     /* SECTIONS */
@@ -317,8 +275,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 18px;
       gap: 10px;
+      margin-bottom: 18px;
     }
 
     .section-title {
@@ -340,33 +298,33 @@
     }
 
     .service-card {
-      background: radial-gradient(circle at top, #181827, #0b0b14 60%);
+      background: var(--bg-alt);
       border-radius: var(--radius-lg);
       padding: 16px 16px 18px;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
     }
 
     .service-pill {
       font-size: 11px;
       display: inline-flex;
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
       background: var(--accent-soft);
-      color: #ffb7c4;
-      margin-bottom: 8px;
+      color: #1d4ed8;
+      margin-bottom: 6px;
     }
 
     .service-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .service-copy {
       font-size: 13px;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .service-meta {
@@ -375,7 +333,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .service-meta strong {
@@ -383,7 +341,7 @@
       font-weight: 600;
     }
 
-    /* PORTFOLIO */
+    /* WORK */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -391,14 +349,14 @@
     }
 
     .project-card {
-      background: radial-gradient(circle at top left, #201827, #070711 60%);
+      background: var(--bg-alt);
       border-radius: var(--radius-xl);
       padding: 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .project-header {
@@ -417,7 +375,7 @@
       font-size: 11px;
       padding: 4px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #f4f4f5;
       color: var(--muted);
     }
 
@@ -427,20 +385,20 @@
     }
 
     .project-footer {
+      font-size: 12px;
+      color: var(--muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--muted);
+      gap: 10px;
     }
 
     .project-link {
-      font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      font-size: 12px;
     }
 
     /* PROCESS */
@@ -451,7 +409,7 @@
     }
 
     .step {
-      background: rgba(7, 7, 14, 0.96);
+      background: var(--bg-alt);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       padding: 14px;
@@ -463,7 +421,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #ff8aa3;
+      color: var(--accent);
       margin-bottom: 4px;
     }
 
@@ -473,32 +431,32 @@
 
     /* CONTACT */
     .contact-card {
-      background: radial-gradient(circle at top, #1f1630, #050509 60%);
+      background: var(--bg-alt);
       border-radius: var(--radius-xl);
-      padding: 20px 18px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
+      padding: 20px 18px;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 20px;
     }
 
     .contact-copy {
       font-size: 14px;
       color: var(--muted);
-      margin-top: 6px;
-      margin-bottom: 12px;
+      margin: 6px 0 10px;
       max-width: 420px;
     }
 
     .contact-meta {
       font-size: 12px;
       color: var(--muted);
+      display: grid;
+      gap: 4px;
     }
 
     .contact-meta strong {
       color: var(--text);
-      font-weight: 600;
     }
 
     .contact-form {
@@ -510,7 +468,7 @@
     .field-label {
       font-size: 12px;
       color: var(--muted);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .field-input,
@@ -518,13 +476,20 @@
     .field-select {
       width: 100%;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(4, 4, 10, 0.95);
+      border: 1px solid var(--border);
+      background: #f9fafb;
       color: var(--text);
       padding: 8px 10px;
       font-family: inherit;
       font-size: 13px;
       outline: none;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus,
+    .field-select:focus {
+      border-color: var(--accent);
+      background: #ffffff;
     }
 
     .field-textarea {
@@ -535,7 +500,7 @@
     .contact-footnote {
       font-size: 11px;
       color: var(--muted);
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .footer {
@@ -574,8 +539,8 @@
     @media (max-width: 640px) {
       .nav {
         flex-wrap: wrap;
-        gap: 10px;
         justify-content: center;
+        gap: 8px;
       }
 
       .nav-links {
@@ -594,40 +559,40 @@
     <!-- NAV -->
     <header class="nav">
       <div class="nav-left">
-        <div class="nav-logo-badge">K</div>
-        <div class="nav-title">
-          <span class="nav-title-main">yngkody</span>
-          <span class="nav-title-sub">Creative Technologist · NYC</span>
+        <div class="nav-logo">K</div>
+        <div>
+          <div class="nav-title-main">yngkody</div>
+          <div class="nav-title-sub">Creative technologist · New York</div>
         </div>
       </div>
-      <div class="nav-links">
+      <nav class="nav-links">
         <a href="#work" class="nav-link">Work</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#contact" class="nav-link">Contact</a>
-      </div>
+      </nav>
       <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Book a Project
+        Book a project
       </button>
     </header>
 
     <!-- HERO -->
-    <section class="hero" id="top">
+    <section class="hero">
       <div>
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          Available for select projects · Web, Apps & Brand
+        <div class="hero-label">
+          <span class="hero-dot"></span>
+          Available for select web, app & brand projects
         </div>
         <h1 class="hero-title">
-          High-end <span class="hero-highlight">websites, apps, and brands</span>
-          built for people who actually care about design.
+          I design & build
+          <span class="hero-highlight">clean, modern digital experiences.</span>
         </h1>
-        <p class="hero-sub">
-          I’m Kody — a creative technologist from New York. I design and build
-          clean, high-performing digital experiences for founders, artists, and
-          brands that want to look as good as they work.
+        <p class="hero-copy">
+          I’m Kody — a creative technologist from NYC. I build high-quality
+          websites, app interfaces, and brand systems for founders, artists, and
+          teams who care about design and usability.
         </p>
-        <div class="hero-buttons">
+        <div class="hero-actions">
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
             Start a project
           </button>
@@ -636,8 +601,8 @@
           </button>
         </div>
         <div class="hero-meta">
-          <span><strong>Services:</strong> Squarespace, custom front-end, iOS/Android, branding</span>
-          <span><strong>Turnaround:</strong> fast, communicative, deadline-driven</span>
+          <span>Squarespace · custom front-end · iOS/Android product work</span>
+          <span>Fast communication · clear scopes · on-time delivery</span>
         </div>
       </div>
 
@@ -645,28 +610,20 @@
       <aside class="hero-preview" aria-label="Selected work preview">
         <div class="hero-chip-row">
           <div class="hero-chip">STA — New York · Cannabis brand site</div>
-          <div class="hero-chip">Transverb — iOS & Android language app</div>
+          <div class="hero-chip">Transverb · Multilingual messaging app</div>
         </div>
         <div class="hero-preview-grid">
-          <!-- STA SITE PREVIEW -->
           <div class="mock-card">
-            <div class="mock-image">
-              <!-- TODO: replace src with your STA hero screenshot -->
-              <img src="sta-hero.png" alt="STA New York cannabis brand website mockup" />
-            </div>
+            <img src="sta-hero.png" alt="Screenshot of STA New York website" />
             <div class="mock-label">
-              <span>STA – New York</span>
-              <span>Custom Squarespace · Store locator · Catalog</span>
+              <span>STA — New York</span>
+              <span>Brand site · Squarespace</span>
             </div>
           </div>
-          <!-- TRANSVERB APP PREVIEW -->
-          <div class="mock-card dark">
-            <div class="mock-image">
-              <!-- TODO: replace src with your Transverb promo image -->
-              <img src="transverb-screens.png" alt="Transverb language messaging app screens" />
-            </div>
-            <div class="mock-label dark">
-              <span>Transverb App</span>
+          <div class="mock-card">
+            <img src="transverb-screens.png" alt="Transverb app promo screens" />
+            <div class="mock-label">
+              <span>Transverb</span>
               <span>Product design · iOS & Android</span>
             </div>
           </div>
@@ -678,34 +635,34 @@
     <section id="services">
       <div class="section-heading">
         <div>
-          <h2 class="section-title">What I help with</h2>
+          <h2 class="section-title">What I do</h2>
           <p class="section-sub">
-            Pick a lane or mix a few. Every project ships with tight visuals,
-            clean UX, and clear communication the whole way through.
+            Strategy, design, and build across web, product, and brand. You can
+            book one service or combine a few.
           </p>
         </div>
       </div>
 
       <div class="services-grid">
         <article class="service-card">
-          <div class="service-pill">Web · Squarespace & Custom</div>
-          <h3 class="service-title">Full websites & landing pages</h3>
+          <div class="service-pill">Web · Squarespace & custom</div>
+          <h3 class="service-title">Websites & landing pages</h3>
           <p class="service-copy">
-            Strategy, design, and build. From one-page launches to full brand
-            sites with product catalogs, store locators, and custom sections.
+            From one-page launches to full brand sites with product catalogs,
+            store locators, and custom layouts tailored to your content.
           </p>
           <div class="service-meta">
-            <span>Ideal for: launches, rebrands, small businesses</span>
+            <span>Ideal for: brands, small biz, launches</span>
             <span><strong>From: $750</strong></span>
           </div>
         </article>
 
         <article class="service-card">
-          <div class="service-pill">Mobile · iOS & Android</div>
-          <h3 class="service-title">App UI, flows & debugging</h3>
+          <div class="service-pill">Product · iOS & Android</div>
+          <h3 class="service-title">App UX, UI & debugging</h3>
           <p class="service-copy">
-            Fix crashes, clean up UX, or design new features. I’ve shipped apps
-            on both stores and know how to keep things smooth.
+            Design new flows, refine existing screens, or help debug and polish
+            apps headed for the App Store or Play Store.
           </p>
           <div class="service-meta">
             <span>Ideal for: founders, indie devs</span>
@@ -714,11 +671,11 @@
         </article>
 
         <article class="service-card">
-          <div class="service-pill">Brand · Creative Direction</div>
-          <h3 class="service-title">Visual systems & EPKs</h3>
+          <div class="service-pill">Brand · Creative</div>
+          <h3 class="service-title">EPKs & visual systems</h3>
           <p class="service-copy">
-            Artist EPKs, one-sheets, and tight brand systems that feel like you
-            and still look corporate enough to send to anyone.
+            Press kits, one-sheets, and simple brand systems for artists and
+            creatives that feel personal and still read professional.
           </p>
           <div class="service-meta">
             <span>Ideal for: artists, labels, events</span>
@@ -734,49 +691,40 @@
         <div>
           <h2 class="section-title">Selected work</h2>
           <p class="section-sub">
-            A quick look at the kinds of projects I ship. More examples are
-            available on request.
+            A quick look at the types of projects I’ve shipped. More examples
+            are available on request.
           </p>
         </div>
       </div>
 
       <div class="portfolio-grid">
-        <!-- STA PROJECT -->
         <article class="project-card">
           <div class="project-header">
             <h3 class="project-title">STA — New York</h3>
             <span class="project-tag">Brand site · Cannabis</span>
           </div>
-          <div class="mock-image">
-            <!-- TODO: replace with your STA catalog/store-locator screenshot -->
-            <img src="sta-catalog.png" alt="STA New York cannabis catalog and store locator" />
-          </div>
+          <img src="sta-catalog.png" alt="STA catalog and site layout" />
           <p class="project-copy">
-            Built a full brand presence for a New York cannabis company:
-            custom Squarespace theme, interactive store locator, product
-            catalog cards, and merch layouts tuned for mobile.
+            Built a full digital presence for a NYC cannabis brand: custom
+            Squarespace theme, product catalog, and store locator styled around
+            the physical jars and packaging.
           </p>
           <div class="project-footer">
             <span>Role: design · build · UX</span>
-            <!-- If you have a live link, add href -->
             <a class="project-link" href="#" target="_blank" rel="noopener">View live site</a>
           </div>
         </article>
 
-        <!-- TRANSVERB PROJECT -->
         <article class="project-card">
           <div class="project-header">
             <h3 class="project-title">Transverb</h3>
-            <span class="project-tag">Product · Messaging app</span>
+            <span class="project-tag">Messaging · Product</span>
           </div>
-          <div class="mock-image">
-            <!-- TODO: replace with your 4-up Transverb promo image -->
-            <img src="transverb-4up.png" alt="Transverb app multi-screen product mockups" />
-          </div>
+          <img src="transverb-4up.png" alt="Transverb app marketing screens" />
           <p class="project-copy">
-            Co-founded and built Transverb, a real-time translation messaging
-            app for iOS & Android. Own everything from UX flows to UI, engineering
-            collaboration, and App Store presence.
+            Co-founded and designed Transverb, a real-time translation messaging
+            app for iOS and Android. Handled product flows, UI, and launch
+            visuals across both platforms.
           </p>
           <div class="project-footer">
             <span>Role: founder · product · design</span>
@@ -786,30 +734,39 @@
       </div>
     </section>
 
-    <!-- PROCESS / ABOUT -->
+    <!-- ABOUT / PROCESS -->
     <section id="about">
       <div class="section-heading">
         <div>
           <h2 class="section-title">How I work</h2>
           <p class="section-sub">
-            Straightforward process, no fluff. We keep things creative, but we
-            also ship on time.
+            Simple process, clear communication, and space for the work to feel
+            like you — not a template.
           </p>
         </div>
       </div>
 
       <div class="process-steps">
         <div class="step">
-          <div class="step-label">Step 01</div>
-          <p><strong>Quick call or brief.</strong> You tell me what you’re building, who it’s for, and where it lives (web, app, brand, or all three).</p>
+          <div class="step-label">Step 1</div>
+          <p>
+            <strong>Quick call or brief.</strong> You share what you’re trying
+            to do, who it’s for, and what already exists (if anything).
+          </p>
         </div>
         <div class="step">
-          <div class="step-label">Step 02</div>
-          <p><strong>Design & build.</strong> I send you visuals, flows, and working previews so you can react early instead of at the end.</p>
+          <div class="step-label">Step 2</div>
+          <p>
+            <strong>Design & build.</strong> I send visuals and working previews
+            early so you can react while it’s still easy to adjust.
+          </p>
         </div>
         <div class="step">
-          <div class="step-label">Step 03</div>
-          <p><strong>Launch & support.</strong> We ship, then tidy up any post-launch tweaks so everything feels smooth for real users.</p>
+          <div class="step-label">Step 3</div>
+          <p>
+            <strong>Launch & refine.</strong> We ship, then handle any small
+            tweaks once real people start using the thing.
+          </p>
         </div>
       </div>
     </section>
@@ -820,8 +777,8 @@
         <div>
           <h2 class="section-title">Tell me what you’re building</h2>
           <p class="section-sub">
-            Use the form below to start something. I usually reply within 24
-            hours with next steps and rough pricing.
+            Share a bit about the project and I’ll reply with next steps and a
+            rough range. No pressure, no spam.
           </p>
         </div>
       </div>
@@ -830,18 +787,17 @@
         <div>
           <h3>Project fit</h3>
           <p class="contact-copy">
-            Ideal projects are websites, brand experiences, and product work
-            where design matters as much as functionality. NYC-based is a plus,
-            but I work remote too.
+            Best fit: web builds, product work, and creative projects where you
+            want someone who understands both design and implementation.
           </p>
           <div class="contact-meta">
-            <p><strong>Typical range:</strong> $750 – $4k depending on scope.</p>
-            <p><strong>Email:</strong> <a href="mailto:hello@yngkody.com">hello@yngkody.com</a></p>
+            <span><strong>Typical range:</strong> $750–$4k depending on scope</span>
+            <span><strong>Email:</strong> <a href="mailto:hello@yngkody.com">hello@yngkody.com</a></span>
+            <span><strong>Location:</strong> New York · working remote & in-person</span>
           </div>
         </div>
 
-        <!-- NOTE: this form is front-end only. 
-             Point action to your form handler (Netlify, Formspark, Squarespace form block, etc.) -->
+        <!-- Hook this to Formspark/Formspree/Squarespace form handler -->
         <form class="contact-form" method="post" action="#">
           <div>
             <div class="field-label">Name</div>
@@ -859,18 +815,18 @@
               <option>Squarespace build</option>
               <option>App / product design</option>
               <option>App debugging / fixes</option>
-              <option>Branding / EPK / visuals</option>
+              <option>Branding / EPK</option>
               <option>Something else</option>
             </select>
           </div>
           <div>
             <div class="field-label">Project details</div>
-            <textarea class="field-textarea" name="details" placeholder="Tell me about your project, timeline, and budget if you know it."></textarea>
+            <textarea class="field-textarea" name="details" placeholder="Timeline, links, budget range if you know it."></textarea>
           </div>
           <div>
-            <button class="btn-primary" type="submit">Send project inquiry</button>
+            <button class="btn-primary" type="submit">Send inquiry</button>
             <p class="contact-footnote">
-              No spam, no newsletter — this goes straight to my inbox.
+              This goes straight to my inbox — no newsletter, no automation.
             </p>
           </div>
         </form>
@@ -878,13 +834,12 @@
     </section>
 
     <footer class="footer">
-      <span>© <span id="year"></span> yngkody — Creative Technologist</span>
-      <span>Based in New York · Available for remote work</span>
+      <span>© <span id="year"></span> yngkody</span>
+      <span>Built by hand in New York</span>
     </footer>
   </div>
 
   <script>
-    // Set current year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
