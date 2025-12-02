@@ -11,7 +11,7 @@
       --text: #111118;
       --muted: #6e6e73;
       --border: #e2e2e7;
-      --accent: #2563eb; /* soft blue */
+      --accent: #2563eb;
       --accent-soft: #e5efff;
       --radius-lg: 18px;
       --radius-xl: 24px;
@@ -132,7 +132,7 @@
     /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
       gap: 32px;
       margin-top: 24px;
       margin-bottom: 40px;
@@ -216,7 +216,7 @@
       gap: 10px;
     }
 
-    /* HERO PREVIEW */
+    /* HERO IMAGE (Fiverr-style frame) */
     .hero-preview {
       background: var(--bg-alt);
       border-radius: var(--radius-xl);
@@ -229,7 +229,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hero-chip {
@@ -240,30 +240,22 @@
       color: var(--muted);
     }
 
-    .hero-preview-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 10px;
-    }
-
-    .mock-card {
+    .hero-shot-frame {
       border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
+      background: #000;
       overflow: hidden;
+      /* Fiverr-like aspect ratio: 690x426 ≈ 1.62 */
+      aspect-ratio: 690 / 426;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .mock-label {
-      padding: 8px 10px;
-      font-size: 11px;
-      color: var(--muted);
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f9fafb;
+    .hero-shot-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
     }
 
     /* SECTIONS */
@@ -341,22 +333,22 @@
       font-weight: 600;
     }
 
-    /* WORK */
+    /* PORTFOLIO – big Fiverr-style frames */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
     }
 
     .project-card {
       background: var(--bg-alt);
       border-radius: var(--radius-xl);
-      padding: 16px;
+      padding: 18px 18px 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr);
+      gap: 14px;
     }
 
     .project-header {
@@ -379,9 +371,27 @@
       color: var(--muted);
     }
 
+    .project-image-frame {
+      border-radius: 18px;
+      background: #000;
+      overflow: hidden;
+      aspect-ratio: 690 / 426; /* Fiverr-style */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
     .project-copy {
       font-size: 13px;
       color: var(--muted);
+      margin-top: 6px;
     }
 
     .project-footer {
@@ -391,6 +401,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
+      margin-top: 4px;
     }
 
     .project-link {
@@ -527,10 +538,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .portfolio-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
       .contact-card {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -568,7 +575,7 @@
       <nav class="nav-links">
         <a href="#work" class="nav-link">Work</a>
         <a href="#services" class="nav-link">Services</a>
-        <a href="#about" class="nav-link">About</a>
+        <a href="#about" class="nav-link">Process</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
       <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
@@ -589,8 +596,8 @@
         </h1>
         <p class="hero-copy">
           I’m Kody — a creative technologist from NYC. I build high-quality
-          websites, app interfaces, and brand systems for founders, artists, and
-          teams who care about design and usability.
+          websites, app interfaces, and brand visuals for founders, artists,
+          and teams who care about design and usability.
         </p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
@@ -601,32 +608,21 @@
           </button>
         </div>
         <div class="hero-meta">
-          <span>Squarespace · custom front-end · iOS/Android product work</span>
+          <span>Squarespace · custom front-end · product design · iOS/Android</span>
           <span>Fast communication · clear scopes · on-time delivery</span>
         </div>
       </div>
 
-      <!-- HERO PREVIEW -->
-      <aside class="hero-preview" aria-label="Selected work preview">
+      <!-- HERO IMAGE -->
+      <aside class="hero-preview" aria-label="Featured project preview">
         <div class="hero-chip-row">
           <div class="hero-chip">STA — New York · Cannabis brand site</div>
           <div class="hero-chip">Transverb · Multilingual messaging app</div>
         </div>
-        <div class="hero-preview-grid">
-          <div class="mock-card">
-            <img src="STA Promo.png" alt="Screenshot of STA New York website" />
-            <div class="mock-label">
-              <span>STA — New York</span>
-              <span>Brand site · Squarespace</span>
-            </div>
-          </div>
-          <div class="mock-card">
-            <img src="Transverb Promo.png" alt="Transverb app promo screens" />
-            <div class="mock-label">
-              <span>Transverb</span>
-              <span>Product design · iOS & Android</span>
-            </div>
-          </div>
+        <div class="hero-shot-frame">
+          <!-- Replace with your favorite wide composite (STA + Transverb, etc.) -->
+          <img src="STA Promo.png" alt="Collage of STA and Transverb work" />
+          <img src="Transverb Promo.png" alt="Collage of STA and Transverb work" />
         </div>
       </aside>
     </section>
@@ -649,7 +645,7 @@
           <h3 class="service-title">Websites & landing pages</h3>
           <p class="service-copy">
             From one-page launches to full brand sites with product catalogs,
-            store locators, and custom layouts tailored to your content.
+            store locators, and layouts tailored to your content.
           </p>
           <div class="service-meta">
             <span>Ideal for: brands, small biz, launches</span>
@@ -661,8 +657,8 @@
           <div class="service-pill">Product · iOS & Android</div>
           <h3 class="service-title">App UX, UI & debugging</h3>
           <p class="service-copy">
-            Design new flows, refine existing screens, or help debug and polish
-            apps headed for the App Store or Play Store.
+            Design flows, refine existing screens, or help debug and polish
+            apps heading to the App Store or Play Store.
           </p>
           <div class="service-meta">
             <span>Ideal for: founders, indie devs</span>
@@ -675,7 +671,7 @@
           <h3 class="service-title">EPKs & visual systems</h3>
           <p class="service-copy">
             Press kits, one-sheets, and simple brand systems for artists and
-            creatives that feel personal and still read professional.
+            creatives that feel personal and read professional.
           </p>
           <div class="service-meta">
             <span>Ideal for: artists, labels, events</span>
@@ -685,25 +681,29 @@
       </div>
     </section>
 
-    <!-- WORK -->
+    <!-- WORK – BIG FIVERR-STYLE FRAMES -->
     <section id="work">
       <div class="section-heading">
         <div>
           <h2 class="section-title">Selected work</h2>
           <p class="section-sub">
-            A quick look at the types of projects I’ve shipped. More examples
-            are available on request.
+            Screenshots sized like a Fiverr portfolio so you can instantly see
+            what I actually ship.
           </p>
         </div>
       </div>
 
       <div class="portfolio-grid">
+        <!-- STA -->
         <article class="project-card">
           <div class="project-header">
             <h3 class="project-title">STA — New York</h3>
             <span class="project-tag">Brand site · Cannabis</span>
           </div>
-          <img src="sta-catalog.png" alt="STA catalog and site layout" />
+          <div class="project-image-frame">
+            <!-- Use your wide STA hero / catalog image here at ~690x426 -->
+            <img src="sta-wide.png" alt="STA New York website preview" />
+          </div>
           <p class="project-copy">
             Built a full digital presence for a NYC cannabis brand: custom
             Squarespace theme, product catalog, and store locator styled around
@@ -715,16 +715,20 @@
           </div>
         </article>
 
+        <!-- TRANSVERB -->
         <article class="project-card">
           <div class="project-header">
             <h3 class="project-title">Transverb</h3>
             <span class="project-tag">Messaging · Product</span>
           </div>
-          <img src="transverb-4up.png" alt="Transverb app marketing screens" />
+          <div class="project-image-frame">
+            <!-- Use your 4-up Transverb marketing panel here at ~690x426 -->
+            <img src="transverb-wide.png" alt="Transverb app marketing preview" />
+          </div>
           <p class="project-copy">
             Co-founded and designed Transverb, a real-time translation messaging
-            app for iOS and Android. Handled product flows, UI, and launch
-            visuals across both platforms.
+            app for iOS and Android. Owned product flows, UI, and launch visuals
+            across both platforms.
           </p>
           <div class="project-footer">
             <span>Role: founder · product · design</span>
@@ -734,14 +738,14 @@
       </div>
     </section>
 
-    <!-- ABOUT / PROCESS -->
+    <!-- PROCESS -->
     <section id="about">
       <div class="section-heading">
         <div>
-          <h2 class="section-title">How I work</h2>
+          <h2 class="section-title">Process</h2>
           <p class="section-sub">
-            Simple process, clear communication, and space for the work to feel
-            like you — not a template.
+            Simple, collaborative, and focused on getting something real in
+            front of people quickly.
           </p>
         </div>
       </div>
@@ -764,8 +768,8 @@
         <div class="step">
           <div class="step-label">Step 3</div>
           <p>
-            <strong>Launch & refine.</strong> We ship, then handle any small
-            tweaks once real people start using the thing.
+            <strong>Launch & refine.</strong> We ship, then handle small tweaks
+            once real people start using the thing.
           </p>
         </div>
       </div>
@@ -793,11 +797,11 @@
           <div class="contact-meta">
             <span><strong>Typical range:</strong> $750–$4k depending on scope</span>
             <span><strong>Email:</strong> <a href="mailto:hello@yngkody.com">hello@yngkody.com</a></span>
-            <span><strong>Location:</strong> New York · working remote & in-person</span>
+            <span><strong>Location:</strong> New York · remote & in-person</span>
           </div>
         </div>
 
-        <!-- Hook this to Formspark/Formspree/Squarespace form handler -->
+        <!-- Hook this to your form backend (Formspree, Formspark, etc.) -->
         <form class="contact-form" method="post" action="#">
           <div>
             <div class="field-label">Name</div>
