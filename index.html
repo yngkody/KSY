@@ -1,39 +1,894 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>yngkody – Creative Technologist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kody Young — Creative Technologist • Product Engineer • Musician</title>
-  <meta name="description" content="Founder of Transverb. Product-minded creative technologist shipping 0→1 mobile apps, data-driven web tools, and brand experiences. Naval Oceanographic Office, Tulane, Transverb, PrepDeck, STA."/>
-  <link rel="icon" href="assets/favicon.png">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Kody Young — Creative Technologist • Product Engineer"/>
-  <meta property="og:description" content="Proof I ship: mobile apps, React dashboards, brand systems, and research pedigree (NASA/ArcGIS, MT)."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="headshot.jpg"/>
-
   <style>
-    /* ========== TOKENS ========== */
-    :root{
-      --bg:#0f1116;          /* page bg */
-      --panel:#151823;       /* card bg */
-      --elev:#1b2030;        /* elevated bg */
-      --ink:#eef2ff;         /* primary text */
-      --ink-dim:#c7cbe2;     /* secondary text */
-      --line:#2a3143;        /* borders */
-      --brand:#b79bff;       /* lilac */
-      --brand-2:#93c5fd;     /* sky */
-      --brand-3:#ff8bd5;     /* pink */
-      --ok:#34d399; --warn:#f59e0b; --bad:#fb7185;
-      --shadow:0 10px 30px rgba(0,0,0,.35), 0 4px 12px rgba(6,10,20,.35);
-      --radius:20px;
-      --max:1100px;
+    :root {
+      --bg: #050509;
+      --bg-soft: #0f1017;
+      --card: #14151f;
+      --accent: #ff4b6b;
+      --accent-soft: rgba(255, 75, 107, 0.14);
+      --text: #f8f8ff;
+      --muted: #a4a7bd;
+      --border: #272839;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
 
-      /* FX */
-      --grid: rgba(255,255,255,.04);
-      --grain: .06; /* grain opacity */
-      --orbA: radial-gradient(50% 60% at 30% 30%, #ff8bd588 0%, #b79bff55 35%, transparent 70%);
-      --orbB: radial-gradient(50% 60% at 70% 40%, #93c5fd88 0%, #b79bff55 38%, transparent 72%);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top, #191a2b 0, #050509 55%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 72px;
+    }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(5, 5, 9, 0.92);
+      backdrop-filter: blur(18px);
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ff9fc9 35%, #050509 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #050509;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-title-main {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nav-title-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff4b6b, #ff9f6a);
+      color: #050509;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(255, 75, 107, 0.45);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+      gap: 32px;
+      margin-top: 32px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 10, 18, 0.9);
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #72ffb4, #1ddf7a);
+      box-shadow: 0 0 0 3px rgba(114, 255, 180, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #ffb2ff, #79bfff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff4b6b, #ff9f6a);
+      color: #050509;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 36px rgba(255, 75, 107, 0.45);
+    }
+
+    .btn-secondary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(10, 10, 20, 0.9);
+      color: var(--text);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .hero-meta span strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* HERO PREVIEW */
+    .hero-preview {
+      position: relative;
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #ffb2c1 0, #1c1014 38%, #050509 85%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-chip-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(5, 5, 9, 0.7);
+      color: #f8f8ff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-preview-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .mock-card {
+      border-radius: 20px;
+      background: #fdfbfa;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mock-card.dark {
+      background: #040814;
+    }
+
+    .mock-image {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .mock-label {
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f2efe9;
+    }
+
+    .mock-label span:last-child {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    .mock-label.dark {
+      background: #060a18;
+      color: #e7ebff;
+    }
+
+    .mock-label.dark span:last-child {
+      opacity: 0.85;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 360px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: radial-gradient(circle at top, #181827, #0b0b14 60%);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .service-pill {
+      font-size: 11px;
+      display: inline-flex;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #ffb7c4;
+      margin-bottom: 8px;
+    }
+
+    .service-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .service-copy {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .service-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .service-meta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      background: radial-gradient(circle at top left, #201827, #070711 60%);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--muted);
+    }
+
+    .project-copy {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+    }
+
+    /* PROCESS */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .step {
+      background: rgba(7, 7, 14, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .step-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ff8aa3;
+      margin-bottom: 4px;
+    }
+
+    .step strong {
+      color: var(--text);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      background: radial-gradient(circle at top, #1f1630, #050509 60%);
+      border-radius: var(--radius-xl);
+      padding: 20px 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .contact-copy {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 6px;
+      margin-bottom: 12px;
+      max-width: 420px;
+    }
+
+    .contact-meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .contact-meta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .field-input,
+    .field-textarea,
+    .field-select {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(4, 4, 10, 0.95);
+      color: var(--text);
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .field-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-footnote {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-preview {
+        order: -1;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .services-grid,
+      .process-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="nav-logo-badge">K</div>
+        <div class="nav-title">
+          <span class="nav-title-main">yngkody</span>
+          <span class="nav-title-sub">Creative Technologist · NYC</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Book a Project
+      </button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Available for select projects · Web, Apps & Brand
+        </div>
+        <h1 class="hero-title">
+          High-end <span class="hero-highlight">websites, apps, and brands</span>
+          built for people who actually care about design.
+        </h1>
+        <p class="hero-sub">
+          I’m Kody — a creative technologist from New York. I design and build
+          clean, high-performing digital experiences for founders, artists, and
+          brands that want to look as good as they work.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Start a project
+          </button>
+          <button class="btn-secondary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+            View selected work
+          </button>
+        </div>
+        <div class="hero-meta">
+          <span><strong>Services:</strong> Squarespace, custom front-end, iOS/Android, branding</span>
+          <span><strong>Turnaround:</strong> fast, communicative, deadline-driven</span>
+        </div>
+      </div>
+
+      <!-- HERO PREVIEW -->
+      <aside class="hero-preview" aria-label="Selected work preview">
+        <div class="hero-chip-row">
+          <div class="hero-chip">STA — New York · Cannabis brand site</div>
+          <div class="hero-chip">Transverb — iOS & Android language app</div>
+        </div>
+        <div class="hero-preview-grid">
+          <!-- STA SITE PREVIEW -->
+          <div class="mock-card">
+            <div class="mock-image">
+              <!-- TODO: replace src with your STA hero screenshot -->
+              <img src="sta-hero.png" alt="STA New York cannabis brand website mockup" />
+            </div>
+            <div class="mock-label">
+              <span>STA – New York</span>
+              <span>Custom Squarespace · Store locator · Catalog</span>
+            </div>
+          </div>
+          <!-- TRANSVERB APP PREVIEW -->
+          <div class="mock-card dark">
+            <div class="mock-image">
+              <!-- TODO: replace src with your Transverb promo image -->
+              <img src="transverb-screens.png" alt="Transverb language messaging app screens" />
+            </div>
+            <div class="mock-label dark">
+              <span>Transverb App</span>
+              <span>Product design · iOS & Android</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">What I help with</h2>
+          <p class="section-sub">
+            Pick a lane or mix a few. Every project ships with tight visuals,
+            clean UX, and clear communication the whole way through.
+          </p>
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-pill">Web · Squarespace & Custom</div>
+          <h3 class="service-title">Full websites & landing pages</h3>
+          <p class="service-copy">
+            Strategy, design, and build. From one-page launches to full brand
+            sites with product catalogs, store locators, and custom sections.
+          </p>
+          <div class="service-meta">
+            <span>Ideal for: launches, rebrands, small businesses</span>
+            <span><strong>From: $750</strong></span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-pill">Mobile · iOS & Android</div>
+          <h3 class="service-title">App UI, flows & debugging</h3>
+          <p class="service-copy">
+            Fix crashes, clean up UX, or design new features. I’ve shipped apps
+            on both stores and know how to keep things smooth.
+          </p>
+          <div class="service-meta">
+            <span>Ideal for: founders, indie devs</span>
+            <span><strong>From: $120/hr</strong></span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-pill">Brand · Creative Direction</div>
+          <h3 class="service-title">Visual systems & EPKs</h3>
+          <p class="service-copy">
+            Artist EPKs, one-sheets, and tight brand systems that feel like you
+            and still look corporate enough to send to anyone.
+          </p>
+          <div class="service-meta">
+            <span>Ideal for: artists, labels, events</span>
+            <span><strong>From: $400</strong></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Selected work</h2>
+          <p class="section-sub">
+            A quick look at the kinds of projects I ship. More examples are
+            available on request.
+          </p>
+        </div>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- STA PROJECT -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">STA — New York</h3>
+            <span class="project-tag">Brand site · Cannabis</span>
+          </div>
+          <div class="mock-image">
+            <!-- TODO: replace with your STA catalog/store-locator screenshot -->
+            <img src="sta-catalog.png" alt="STA New York cannabis catalog and store locator" />
+          </div>
+          <p class="project-copy">
+            Built a full brand presence for a New York cannabis company:
+            custom Squarespace theme, interactive store locator, product
+            catalog cards, and merch layouts tuned for mobile.
+          </p>
+          <div class="project-footer">
+            <span>Role: design · build · UX</span>
+            <!-- If you have a live link, add href -->
+            <a class="project-link" href="#" target="_blank" rel="noopener">View live site</a>
+          </div>
+        </article>
+
+        <!-- TRANSVERB PROJECT -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Transverb</h3>
+            <span class="project-tag">Product · Messaging app</span>
+          </div>
+          <div class="mock-image">
+            <!-- TODO: replace with your 4-up Transverb promo image -->
+            <img src="transverb-4up.png" alt="Transverb app multi-screen product mockups" />
+          </div>
+          <p class="project-copy">
+            Co-founded and built Transverb, a real-time translation messaging
+            app for iOS & Android. Own everything from UX flows to UI, engineering
+            collaboration, and App Store presence.
+          </p>
+          <div class="project-footer">
+            <span>Role: founder · product · design</span>
+            <a class="project-link" href="#" target="_blank" rel="noopener">View case study</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROCESS / ABOUT -->
+    <section id="about">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">How I work</h2>
+          <p class="section-sub">
+            Straightforward process, no fluff. We keep things creative, but we
+            also ship on time.
+          </p>
+        </div>
+      </div>
+
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-label">Step 01</div>
+          <p><strong>Quick call or brief.</strong> You tell me what you’re building, who it’s for, and where it lives (web, app, brand, or all three).</p>
+        </div>
+        <div class="step">
+          <div class="step-label">Step 02</div>
+          <p><strong>Design & build.</strong> I send you visuals, flows, and working previews so you can react early instead of at the end.</p>
+        </div>
+        <div class="step">
+          <div class="step-label">Step 03</div>
+          <p><strong>Launch & support.</strong> We ship, then tidy up any post-launch tweaks so everything feels smooth for real users.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Tell me what you’re building</h2>
+          <p class="section-sub">
+            Use the form below to start something. I usually reply within 24
+            hours with next steps and rough pricing.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div>
+          <h3>Project fit</h3>
+          <p class="contact-copy">
+            Ideal projects are websites, brand experiences, and product work
+            where design matters as much as functionality. NYC-based is a plus,
+            but I work remote too.
+          </p>
+          <div class="contact-meta">
+            <p><strong>Typical range:</strong> $750 – $4k depending on scope.</p>
+            <p><strong>Email:</strong> <a href="mailto:hello@yngkody.com">hello@yngkody.com</a></p>
+          </div>
+        </div>
+
+        <!-- NOTE: this form is front-end only. 
+             Point action to your form handler (Netlify, Formspark, Squarespace form block, etc.) -->
+        <form class="contact-form" method="post" action="#">
+          <div>
+            <div class="field-label">Name</div>
+            <input class="field-input" type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div>
+            <div class="field-label">Email</div>
+            <input class="field-input" type="email" name="email" placeholder="you@email.com" required />
+          </div>
+          <div>
+            <div class="field-label">What do you need?</div>
+            <select class="field-select" name="service">
+              <option value="">Choose one</option>
+              <option>New website / redesign</option>
+              <option>Squarespace build</option>
+              <option>App / product design</option>
+              <option>App debugging / fixes</option>
+              <option>Branding / EPK / visuals</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div>
+            <div class="field-label">Project details</div>
+            <textarea class="field-textarea" name="details" placeholder="Tell me about your project, timeline, and budget if you know it."></textarea>
+          </div>
+          <div>
+            <button class="btn-primary" type="submit">Send project inquiry</button>
+            <p class="contact-footnote">
+              No spam, no newsletter — this goes straight to my inbox.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> yngkody — Creative Technologist</span>
+      <span>Based in New York · Available for remote work</span>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
     }
 
     /* ========== BASE ========== */
