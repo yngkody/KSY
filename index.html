@@ -208,7 +208,7 @@
       border-radius: 999px;
       border: 1px solid var(--border);
       background: #ffffff;
-      color: var(--text);
+      color: #111118;
       font-size: 14px;
       cursor: pointer;
     }
@@ -260,47 +260,38 @@
       width: 100%;
     }
 
-.featured-carousel {
-  position: relative;
-  width: 100%;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  background: #000;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border);
-  aspect-ratio: 16 / 9; /* desktop */
-}
+    .featured-carousel {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      aspect-ratio: 16 / 9; /* desktop wide */
+    }
 
-.featured-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
+    .featured-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
 
-.featured-slide.is-active {
-  opacity: 1;
-  pointer-events: auto;
-}
+    .featured-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-.featured-slide picture,
-.featured-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* mobile: taller aspect, but same picture logic handles the swap */
-@media (max-width: 640px) {
-  .featured-carousel {
-    aspect-ratio: 9 / 16;
-  }
-}
-
-
+    .featured-slide picture,
+    .featured-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
 
     .featured-caption {
       margin-top: 10px;
@@ -516,15 +507,7 @@
       }
 
       .featured-carousel {
-        aspect-ratio: 9 / 16; /* vertical feel on mobile (1080x1920) */
-      }
-
-      .slide-desktop {
-        display: none;
-      }
-
-      .slide-mobile {
-        display: block;
+        aspect-ratio: 9 / 16; /* vertical on mobile */
       }
     }
   </style>
@@ -584,107 +567,75 @@
       </div>
     </section>
 
+    <!-- WORK -->
     <section id="work">
-  <div class="hero-work-heading">
-    <div>
-      <h2 class="hero-work-title">Selected work</h2>
-      <p class="hero-work-sub">
-        Big, screen-filling previews that rotate between two views on both desktop and mobile.
-      </p>
-    </div>
-  </div>
-
-  <div class="hero-featured">
-    <!-- STA PROJECT -->
-    <article class="feature-project">
-      <div class="featured-carousel" data-project="sta">
-        <!-- Slide 1 -->
-        <div class="featured-slide is-active">
-          <!-- DESKTOP image -->
-          <img
-            class="slide-desktop"
-            src="STA Promo One.png"
-            alt="STA — New York homepage"
-          />
-          <!-- MOBILE image -->
-          <img
-            class="slide-mobile"
-            src="Mobile STA.png"
-            alt="STA — New York mobile homepage"
-          />
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="featured-slide">
-          <!-- DESKTOP image -->
-          <img
-            class="slide-desktop"
-            src="STA Promo Two.png"
-            alt="STA — New York catalog"
-          />
-          <!-- MOBILE image -->
-          <img
-            class="slide-mobile"
-            src="Mobile STA Two.png"
-            alt="STA — New York mobile catalog"
-          />
-        </div>
-      </div>
-
-      <div class="featured-caption">
+      <div class="hero-work-heading">
         <div>
-          <strong>STA — New York</strong> · brand site for a NYC cannabis label
-        </div>
-        <span class="featured-tag">Squarespace · web design</span>
-      </div>
-    </article>
-
-    <!-- TRANSVERB PROJECT -->
-    <article class="feature-project">
-      <div class="featured-carousel" data-project="transverb">
-        <!-- Slide 1 -->
-        <div class="featured-slide is-active">
-          <!-- DESKTOP image -->
-          <img
-            class="slide-desktop"
-            src="Transverb Promo One.png"
-            alt="Transverb app promo screens"
-          />
-          <!-- MOBILE image -->
-          <img
-            class="slide-mobile"
-            src="Mobile Transverb.png"
-            alt="Transverb mobile promo"
-          />
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="featured-slide">
-          <!-- DESKTOP image -->
-          <img
-            class="slide-desktop"
-            src="Transverb Promo Two.png"
-            alt="Transverb language features"
-          />
-          <!-- MOBILE image -->
-          <img
-            class="slide-mobile"
-            src="Mobile Transverb Promo Two.png"
-            alt="Transverb mobile features"
-          />
+          <h2 class="hero-work-title">Selected work</h2>
+          <p class="hero-work-sub">
+            Big, screen-filling previews that rotate between two views on both desktop and mobile.
+          </p>
         </div>
       </div>
 
-      <div class="featured-caption">
-        <div>
-          <strong>Transverb</strong> · real-time translation messaging app for iOS &amp; Android
-        </div>
-        <span class="featured-tag">Product · app design</span>
-      </div>
-    </article>
-  </div>
-</section>
+      <div class="hero-featured">
+        <!-- STA PROJECT -->
+        <article class="feature-project">
+          <div class="featured-carousel" data-project="sta">
+            <!-- Slide 1 -->
+            <div class="featured-slide is-active">
+              <picture>
+                <!-- Mobile image -->
+                <source media="(max-width: 640px)" srcset="Mobile STA.png" />
+                <!-- Desktop image -->
+                <img src="STA Promo One.png" alt="STA — New York homepage" />
+              </picture>
+            </div>
+            <!-- Slide 2 -->
+            <div class="featured-slide">
+              <picture>
+                <source media="(max-width: 640px)" srcset="Mobile STA Two.png" />
+                <img src="STA Promo Two.png" alt="STA — New York catalog" />
+              </picture>
+            </div>
+          </div>
 
+          <div class="featured-caption">
+            <div>
+              <strong>STA — New York</strong> · brand site for a NYC cannabis label
+            </div>
+            <span class="featured-tag">Squarespace · web design</span>
+          </div>
+        </article>
+
+        <!-- TRANSVERB PROJECT -->
+        <article class="feature-project">
+          <div class="featured-carousel" data-project="transverb">
+            <!-- Slide 1 -->
+            <div class="featured-slide is-active">
+              <picture>
+                <source media="(max-width: 640px)" srcset="Mobile Transverb.png" />
+                <img src="Transverb Promo One.png" alt="Transverb app promo screens" />
+              </picture>
+            </div>
+            <!-- Slide 2 -->
+            <div class="featured-slide">
+              <picture>
+                <source media="(max-width: 640px)" srcset="Mobile Transverb Promo Two.png" />
+                <img src="Transverb Promo Two.png" alt="Transverb language features" />
+              </picture>
+            </div>
+          </div>
+
+          <div class="featured-caption">
+            <div>
+              <strong>Transverb</strong> · real-time translation messaging app for iOS &amp; Android
+            </div>
+            <span class="featured-tag">Product · app design</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- SERVICES -->
     <section id="services">
@@ -803,8 +754,6 @@
           </div>
         </div>
 
-        <!-- Simple GET form (won't 405 on static hosting).
-             Hook this up to Formspree / backend later if you want email notifications. -->
         <form class="contact-form" method="get" action="#">
           <div>
             <div class="field-label">Name</div>
@@ -864,7 +813,7 @@
           slides[index].classList.remove("is-active");
           index = (index + 1) % slides.length;
           slides[index].classList.add("is-active");
-        }, 4500); // 4.5 seconds per slide
+        }, 4500);
       });
     });
   </script>
