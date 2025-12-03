@@ -6970,5 +6970,25 @@ Find your current <section id="work"> ... </section> and replace the whole thing
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const carousels = document.querySelectorAll(".featured-carousel");
+
+    carousels.forEach((carousel) => {
+      const slides = carousel.querySelectorAll(".featured-slide");
+      if (slides.length <= 1) return;
+
+      let index = 0;
+
+      setInterval(() => {
+        slides[index].classList.remove("is-active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("is-active");
+      }, 4500); // 4.5s per slide – tweak if you want slower/faster
+    });
+  });
+</script>
+
 </body>
 </html>
