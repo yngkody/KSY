@@ -795,39 +795,41 @@
             <span><strong>Location:</strong> New York · remote &amp; in-person</span>
           </div>
         </div>
+<form class="contact-form" 
+      method="POST" 
+      action="https://formspree.io/f/mzzngylp">
 
-        <form class="contact-form" method="get" action="#">
-          <div>
-            <div class="field-label">Name</div>
-            <input class="field-input" type="text" name="name" placeholder="Your name" required />
-          </div>
-          <div>
-            <div class="field-label">Email</div>
-            <input class="field-input" type="email" name="email" placeholder="you@email.com" required />
-          </div>
-          <div>
-            <div class="field-label">What do you need?</div>
-            <select class="field-select" name="service">
-              <option value="">Choose one</option>
-              <option>New website / redesign</option>
-              <option>Squarespace build</option>
-              <option>App / product design</option>
-              <option>App debugging / fixes</option>
-              <option>Branding / EPK</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div>
-            <div class="field-label">Project details</div>
-            <textarea class="field-textarea" name="details" placeholder="Timeline, links, budget range if you know it."></textarea>
-          </div>
-          <div>
-            <button class="btn-primary" type="submit">Send inquiry</button>
-            <p class="contact-footnote">
-              This currently just reloads the page — connect it to Formspree or a backend when you’re ready.
-            </p>
-          </div>
-        </form>
+  <div>
+    <div class="field-label">Name</div>
+    <input class="field-input" type="text" name="name" placeholder="Your name" required />
+  </div>
+
+  <div>
+    <div class="field-label">Email</div>
+    <input class="field-input" type="email" name="email" placeholder="you@email.com" required />
+  </div>
+
+  <div>
+    <div class="field-label">What do you need?</div>
+    <select class="field-select" name="service" required>
+      <option value="">Choose one</option>
+      <option>New website / redesign</option>
+      <option>Squarespace build</option>
+      <option>App / product design</option>
+      <option>App debugging / fixes</option>
+      <option>Branding / EPK</option>
+      <option>Something else</option>
+    </select>
+  </div>
+
+  <div>
+    <div class="field-label">Project details</div>
+    <textarea class="field-textarea" name="details" placeholder="Timeline, links, budget range if you know it."></textarea>
+  </div>
+
+  <button class="btn-primary" type="submit">Send inquiry</button>
+</form>
+
       </div>
     </section>
 
