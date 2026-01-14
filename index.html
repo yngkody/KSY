@@ -19,42 +19,43 @@
       --border: #e2e2e7;
       --accent: #2563eb;
       --accent-soft: #e5efff;
+
       --radius-lg: 18px;
       --radius-xl: 26px;
+
       --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.18);
-      --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      --shadow-card: 0 10px 26px rgba(15, 23, 42, 0.06);
+
+      --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      overflow-x: clip; /* prevents edge bleed */
+      background: var(--bg);
     }
 
     body {
       font-family: var(--font-sans);
       font-weight: 400;
-      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 24px 20px 72px;
+      padding: clamp(16px, 2.2vw, 24px) clamp(16px, 2.2vw, 20px) 72px;
+      overflow-x: clip; /* extra safety */
     }
 
     /* NAV */
@@ -65,6 +66,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
+
       padding: 10px 14px;
       border-radius: 999px;
       background: rgba(250, 250, 252, 0.94);
@@ -72,12 +75,15 @@
       backdrop-filter: blur(16px);
       box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
       margin-bottom: 32px;
+
+      min-width: 0;
     }
 
     .nav-left {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
     }
 
     .nav-logo {
@@ -91,16 +97,19 @@
       justify-content: center;
       font-size: 16px;
       font-weight: 600;
+      flex: 0 0 auto;
     }
 
     .nav-title-main {
       font-size: 14px;
       font-weight: 500;
+      line-height: 1.2;
     }
 
     .nav-title-sub {
       font-size: 12px;
       color: var(--muted);
+      line-height: 1.2;
     }
 
     .nav-links {
@@ -109,12 +118,14 @@
       align-items: center;
       font-size: 13px;
       font-weight: 400;
+      flex: 0 0 auto;
     }
 
     .nav-link {
       padding: 6px 10px;
       border-radius: 999px;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .nav-link:hover {
@@ -131,17 +142,17 @@
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
 
-    .nav-cta:hover {
-      background: #1d4ed8;
-    }
+    .nav-cta:hover { background: #1d4ed8; }
 
     /* HERO */
     .hero {
       margin-top: 32px;
       margin-bottom: 32px;
-      max-width: 720px;
+      max-width: 760px;
     }
 
     .hero-label {
@@ -161,23 +172,22 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
+      flex: 0 0 auto;
     }
 
     .hero-title {
-      font-size: clamp(32px, 4.4vw, 42px);
+      font-size: clamp(32px, 4.4vw, 44px);
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 10px;
     }
 
-    .hero-highlight {
-      color: var(--accent);
-    }
+    .hero-highlight { color: var(--accent); }
 
     .hero-copy {
       font-size: 15px;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 560px;
       margin-bottom: 22px;
     }
 
@@ -199,9 +209,7 @@
       cursor: pointer;
     }
 
-    .btn-primary:hover {
-      background: #1d4ed8;
-    }
+    .btn-primary:hover { background: #1d4ed8; }
 
     .btn-secondary {
       padding: 10px 18px;
@@ -213,6 +221,8 @@
       cursor: pointer;
     }
 
+    .btn-secondary:hover { background: #f7f7fb; }
+
     .hero-meta {
       font-size: 12px;
       color: var(--muted);
@@ -222,43 +232,39 @@
       margin-top: 4px;
     }
 
-    /* SECTION HEADINGS */
-    section {
-      margin-bottom: 48px;
-    }
+    /* SECTIONS */
+    section { margin-bottom: 48px; }
 
-    .section-heading,
-    .hero-work-heading {
+    .section-heading {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       gap: 10px;
       margin-bottom: 18px;
+      min-width: 0;
     }
 
-    .section-title,
-    .hero-work-title {
+    .section-title {
       font-size: 20px;
       font-weight: 600;
+      margin: 0;
     }
 
-    .section-sub,
-    .hero-work-sub {
+    .section-sub {
       font-size: 13px;
       color: var(--muted);
-      max-width: 360px;
+      max-width: 420px;
+      margin-top: 6px;
     }
 
-    /* FEATURED WORK CAROUSELS */
-    .hero-featured {
+    /* WORK */
+    .work-wrap {
       display: flex;
       flex-direction: column;
       gap: 40px;
     }
 
-    .feature-project {
-      width: 100%;
-    }
+    .feature-project { width: 100%; }
 
     .featured-carousel {
       position: relative;
@@ -268,7 +274,8 @@
       background: #000;
       box-shadow: var(--shadow-soft);
       border: 1px solid var(--border);
-      aspect-ratio: 16 / 9; /* desktop wide */
+      aspect-ratio: 16 / 9;
+      isolation: isolate; /* prevents weird blending/edge artifacts */
     }
 
     .featured-slide {
@@ -301,11 +308,27 @@
       font-size: 13px;
       color: var(--muted);
       gap: 10px;
+      flex-wrap: wrap; /* key for no overflow */
+      min-width: 0;
     }
 
     .featured-caption strong {
       color: var(--text);
       font-weight: 600;
+    }
+
+    .featured-caption-left {
+      flex: 1 1 240px;
+      min-width: 220px;
+    }
+
+    .featured-caption-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 0 0 auto;
+      justify-content: flex-end;
     }
 
     .featured-tag {
@@ -314,14 +337,7 @@
       border-radius: 999px;
       background: #f4f4f5;
       color: var(--muted);
-    }
-
-    .featured-caption-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
     .project-cta {
@@ -336,17 +352,16 @@
       font-size: 11px;
       font-weight: 500;
       cursor: pointer;
+      white-space: nowrap;
     }
 
-    .project-cta:hover {
-      background: #0b1220;
-    }
+    .project-cta:hover { background: #0b1220; }
 
     .project-description {
       font-size: 13px;
       color: var(--muted);
       margin-top: 6px;
-      max-width: 640px;
+      max-width: 700px;
     }
 
     /* SERVICES */
@@ -361,7 +376,8 @@
       border-radius: var(--radius-lg);
       padding: 16px 16px 18px;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+      box-shadow: var(--shadow-card);
+      min-width: 0;
     }
 
     .service-pill {
@@ -392,13 +408,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 4px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .service-meta strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .service-meta strong { color: var(--text); font-weight: 600; }
 
     /* PROCESS */
     .process-steps {
@@ -414,6 +428,8 @@
       padding: 14px;
       font-size: 13px;
       color: var(--muted);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      min-width: 0;
     }
 
     .step-label {
@@ -424,9 +440,7 @@
       margin-bottom: 4px;
     }
 
-    .step strong {
-      color: var(--text);
-    }
+    .step strong { color: var(--text); }
 
     /* CONTACT */
     .contact-card {
@@ -438,6 +452,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 20px;
+      min-width: 0;
     }
 
     .contact-copy {
@@ -454,14 +469,13 @@
       gap: 4px;
     }
 
-    .contact-meta strong {
-      color: var(--text);
-    }
+    .contact-meta strong { color: var(--text); }
 
     .contact-form {
       display: grid;
       gap: 10px;
       font-size: 13px;
+      min-width: 0;
     }
 
     .field-label {
@@ -491,10 +505,7 @@
       background: #ffffff;
     }
 
-    .field-textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
+    .field-textarea { min-height: 90px; resize: vertical; }
 
     .contact-footnote {
       font-size: 11px;
@@ -502,6 +513,7 @@
       margin-top: 4px;
     }
 
+    /* FOOTER */
     .footer {
       margin-top: 40px;
       font-size: 11px;
@@ -514,13 +526,9 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-card { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 640px) {
@@ -528,25 +536,28 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 8px;
+        text-align: center;
       }
 
-      .nav-links {
-        display: none;
-      }
+      .nav-links { display: none; }
 
       .services-grid,
       .process-steps {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .featured-carousel {
-        aspect-ratio: 9 / 16; /* vertical on mobile */
-      }
+      .featured-carousel { aspect-ratio: 9 / 16; }
+
+      .project-cta { white-space: nowrap; }
+      .featured-caption-left { flex-basis: 100%; }
+      .featured-caption-right { justify-content: flex-start; }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
+
     <!-- NAV -->
     <header class="nav">
       <div class="nav-left">
@@ -556,12 +567,14 @@
           <div class="nav-title-sub">Creative technologist · New York</div>
         </div>
       </div>
+
       <nav class="nav-links">
         <a href="#work" class="nav-link">Work</a>
         <a href="#services" class="nav-link">Services</a>
-        <a href="#about" class="nav-link">Process</a>
+        <a href="#process" class="nav-link">Process</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
+
       <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
         Book a project
       </button>
@@ -595,81 +608,64 @@
       </div>
 
       <div class="hero-meta">
-        <span>Squarespace · custom front-end · product design · iOS/Android</span>
+        <span>Custom front-end · product design · iOS/Android · Shopify API</span>
         <span>Fast communication · clear scopes · on-time delivery</span>
       </div>
     </section>
 
+    <!-- WORK -->
     <section id="work">
-      <div class="hero-work-heading">
+      <div class="section-heading">
         <div>
-          <h2 class="hero-work-title">Selected work</h2>
+          <h2 class="section-title">Selected work</h2>
+          <p class="section-sub">A few recent builds across web, product, and launch visuals.</p>
         </div>
       </div>
 
-      <div class="hero-featured">
+      <div class="work-wrap">
 
         <!-- ================= STA PROJECT ================= -->
         <article class="feature-project">
           <div class="featured-carousel" data-project="sta">
 
-            <!-- Slide 1 -->
             <div class="featured-slide is-active">
               <picture>
-                <!-- MOBILE (RAW URL) -->
-                <source 
-                  media="(max-width: 640px)" 
+                <source
+                  media="(max-width: 640px)"
                   srcset="https://github.com/yngkody/KSY/blob/main/STA%20Mobile%20Promo%20I.png?raw=true"
                 />
-                <!-- DESKTOP -->
-                <img 
-                  src="STA Promo One.png" 
-                  alt="STA — New York homepage"
-                />
+                <img src="STA Promo One.png" alt="STA — New York homepage" />
               </picture>
             </div>
 
-            <!-- Slide 2 -->
             <div class="featured-slide">
               <picture>
-                <!-- MOBILE (RAW URL) -->
-                <source 
-                  media="(max-width: 640px)" 
+                <source
+                  media="(max-width: 640px)"
                   srcset="https://github.com/yngkody/KSY/blob/main/STA%20Mobile%20Promo.png?raw=true"
                 />
-                <!-- DESKTOP -->
-                <img 
-                  src="STA Promo Two.png" 
-                  alt="STA — New York catalog"
-                />
+                <img src="STA Promo Two.png" alt="STA — New York catalog" />
               </picture>
-            </div>
-
             </div>
 
           </div>
 
           <div class="featured-caption">
-            <div>
+            <div class="featured-caption-left">
               <strong>STA — New York</strong> · brand site for a NYC cannabis label
             </div>
             <div class="featured-caption-right">
-              <span class="featured-tag">Squarespace · web design</span>
-            </div>
-                          <a
-                class="project-cta"
-                href="https://www.staexotics.com/"
-                target="_blank"
-                rel="noopener"
-              >
+              <span class="featured-tag">Custom HTML/CSS/JS · Vercel · Shopify API</span>
+              <a class="project-cta" href="https://www.staexotics.com/" target="_blank" rel="noopener">
                 Visit website
               </a>
+            </div>
           </div>
 
           <p class="project-description">
-            STA is a cannabis lifestyle brand site built on Squarespace with custom
-            code for product cards, NYC-inspired visuals, and a smooth, age-gated
-            browsing experience tailored to in-person shoppers and online orders.
+            STA is a cannabis lifestyle brand site built with custom HTML/CSS/JavaScript,
+            deployed on Vercel, and integrated with Shopify APIs for product data and commerce —
+            designed for a smooth, fast, mobile-first browsing experience.
           </p>
         </article>
 
@@ -677,42 +673,30 @@
         <article class="feature-project">
           <div class="featured-carousel" data-project="transverb">
 
-            <!-- Slide 1 -->
             <div class="featured-slide is-active">
               <picture>
-                <!-- MOBILE (RAW URL) -->
-                <source 
-                  media="(max-width: 640px)" 
+                <source
+                  media="(max-width: 640px)"
                   srcset="https://raw.githubusercontent.com/yngkody/KSY/main/Mobile%20Transverb.png"
                 />
-                <!-- DESKTOP -->
-                <img 
-                  src="Transverb Promo One.png" 
-                  alt="Transverb app promo screens"
-                />
+                <img src="Transverb Promo One.png" alt="Transverb app promo screens" />
               </picture>
             </div>
 
-            <!-- Slide 2 -->
             <div class="featured-slide">
               <picture>
-                <!-- MOBILE (RAW URL) -->
-                <source 
-                  media="(max-width: 640px)" 
+                <source
+                  media="(max-width: 640px)"
                   srcset="https://raw.githubusercontent.com/yngkody/KSY/main/Mobile%20Transverb%20Promo%20Two.png"
                 />
-                <!-- DESKTOP -->
-                <img 
-                  src="Transverb Promo Two.png" 
-                  alt="Transverb language features"
-                />
+                <img src="Transverb Promo Two.png" alt="Transverb language features" />
               </picture>
             </div>
 
           </div>
 
           <div class="featured-caption">
-            <div>
+            <div class="featured-caption-left">
               <strong>Transverb</strong> · real-time translation messaging app for iOS &amp; Android
             </div>
             <div class="featured-caption-right">
@@ -729,12 +713,10 @@
           </div>
 
           <p class="project-description">
-            I co-founded Transverb and led product design and front-end for a
-            real-time translation messenger — from onboarding and chat flows to
-            App Store / Play Store launch assets — helping people text in their
+            I co-founded Transverb and led product design and front-end for a real-time translation messenger —
+            from onboarding and chat flows to App Store / Play Store launch assets — helping people text in their
             own language while messages arrive translated on the other side.
           </p>
-
         </article>
 
       </div>
@@ -754,9 +736,8 @@
 
       <div class="services-grid">
 
-        <!-- WEB / SQUARESPACE -->
         <article class="service-card">
-          <div class="service-pill">Web · Squarespace & custom</div>
+          <div class="service-pill">Web · Custom & platforms</div>
           <h3 class="service-title">Websites & landing pages</h3>
           <p class="service-copy">
             High-converting landing pages, full-brand sites, and portfolio builds
@@ -768,7 +749,6 @@
           </div>
         </article>
 
-        <!-- APP / DEBUGGING -->
         <article class="service-card">
           <div class="service-pill">Product · iOS & Android</div>
           <h3 class="service-title">App UI polish & debugging</h3>
@@ -782,7 +762,6 @@
           </div>
         </article>
 
-        <!-- EPK / BRAND -->
         <article class="service-card">
           <div class="service-pill">Brand · Creative</div>
           <h3 class="service-title">EPKs & visual branding</h3>
@@ -800,7 +779,7 @@
     </section>
 
     <!-- PROCESS -->
-    <section id="about">
+    <section id="process">
       <div class="section-heading">
         <div>
           <h2 class="section-title">Process</h2>
@@ -819,6 +798,7 @@
             to do, who it’s for, and what already exists (if anything).
           </p>
         </div>
+
         <div class="step">
           <div class="step-label">Step 2</div>
           <p>
@@ -826,6 +806,7 @@
             early so you can react while it’s still easy to adjust.
           </p>
         </div>
+
         <div class="step">
           <div class="step-label">Step 3</div>
           <p>
@@ -850,7 +831,7 @@
 
       <div class="contact-card">
         <div>
-          <h3>Project fit</h3>
+          <h3 style="margin:0;">Project fit</h3>
           <p class="contact-copy">
             Best fit: web builds, product work, and creative projects where you
             want someone who understands both design and implementation.
@@ -861,10 +842,8 @@
             <span><strong>Location:</strong> New York · remote &amp; in-person</span>
           </div>
         </div>
-        <form class="contact-form" 
-              method="POST" 
-              action="https://formspree.io/f/mzzngylp">
 
+        <form class="contact-form" method="POST" action="https://formspree.io/f/mzzngylp">
           <div>
             <div class="field-label">Name</div>
             <input class="field-input" type="text" name="name" placeholder="Your name" required />
@@ -880,7 +859,7 @@
             <select class="field-select" name="service" required>
               <option value="">Choose one</option>
               <option>New website / redesign</option>
-              <option>Squarespace build</option>
+              <option>Custom website build</option>
               <option>App / product design</option>
               <option>App debugging / fixes</option>
               <option>Branding / EPK</option>
@@ -894,8 +873,8 @@
           </div>
 
           <button class="btn-primary" type="submit">Send inquiry</button>
+          <div class="contact-footnote">I usually reply within 24–48 hours.</div>
         </form>
-
       </div>
     </section>
 
@@ -903,6 +882,7 @@
       <span>© <span id="year"></span> yngkody</span>
       <span>Built by hand in New York</span>
     </footer>
+
   </div>
 
   <script>
